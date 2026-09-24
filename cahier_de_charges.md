@@ -9,7 +9,7 @@
 
 ## Description
 
-SoundMatch est un « Tinder de la musique ». L'utilisateur écoute des extraits de 30 secondes et indique s'il aime ou non chaque titre. L'application calcule ensuite son pourcentage de compatibilité musicale avec ses amis. Les titres proviennent de l'API gratuite de Deezer.
+SoundMatch est un « Tinder de la musique ». L'utilisateur écoute des extraits  et indique s'il aime ou non chaque titre. L'application calcule ensuite son pourcentage de compatibilité musicale avec ses amis. Les titres proviennent de l'API gratuite de Deezer.
 
 ## Fonctionnalités principales
 
