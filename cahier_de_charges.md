@@ -59,7 +59,60 @@ Exemple d'affichage :
 > **Kris × Justine : 82 % de compatibilité**
 > Artistes en commun : SZA · Drake · Brent Faiyaz
 > Titres aimés en commun : 4
+## Pages de l'application
 
+### Pages publiques (sans connexion)
+| Page | Description |
+|---|---|
+| Accueil | Présente le concept de SoundMatch et donne accès à l'inscription / connexion |
+| Inscription | Création d'un compte (nom d'utilisateur, e-mail, mot de passe) |
+| Connexion | Connexion avec e-mail et mot de passe |
+
+### Pages privées (après connexion)
+| Page | Description |
+|---|---|
+| Swipe | Écouter un extrait de 30 s et choisir « J'aime » ou « J'aime pas » |
+| Mes titres likés | Liste des titres aimés, avec possibilité de retirer un like |
+| Amis | Rechercher un utilisateur, envoyer / accepter / refuser une demande d'ami |
+| Compatibilité | Pourcentage de compatibilité avec un ami + titres et artistes en commun |
+| Mon profil | Modifier ses informations, changer de langue, se déconnecter |
+| Administration *(admin uniquement)* | Gérer les genres musicaux proposés et les comptes utilisateurs |
+
+## Rôles et droits
+| Action | Visiteur | Utilisateur | Administrateur |
+|---|:---:|:---:|:---:|
+| Voir la page d'accueil | ✅ | ✅ | ✅ |
+| Créer un compte / se connecter | ✅ | — | — |
+| Swiper, liker, voir ses titres | ❌ | ✅ | ✅ |
+| Gérer ses amis et voir la compatibilité | ❌ | ✅ | ✅ |
+| Gérer les genres et les comptes | ❌ | ❌ | ✅ |
+
+## Données principales
+| Entité | Informations stockées |
+|---|---|
+| Utilisateur | pseudo, e-mail, mot de passe haché, rôle (utilisateur / admin), langue, date d'inscription |
+| Titre | identifiant Deezer, titre, artiste, genre, lien de l'extrait, pochette |
+| Genre | nom, identifiant Deezer, actif ou non |
+| Swipe | utilisateur, titre, aimé ou non, date |
+| Amitié | utilisateur qui demande, utilisateur qui reçoit, statut (en attente / acceptée / refusée) |
+
+Relations :
+- un utilisateur swipe plusieurs titres, un titre peut être swipé par plusieurs utilisateurs → table **Swipe**
+- un utilisateur peut avoir plusieurs amis → table **Amitié**
+- un titre appartient à un genre
+
+## E-mails envoyés
+- **Bienvenue** : à l'inscription
+- **Nouvelle demande d'ami** : quand quelqu'un nous envoie une demande
+
+## Technologies et contraintes
+- PHP (programmation orientée objet, autoload des classes), **sans framework**
+- Base de données **MariaDB / MySQL**
+- API publique **Deezer** (appelée côté serveur en PHP)
+- Déploiement sur **Infomaniak**
+- Application disponible en **français et en anglais**
+- Sécurité : mots de passe hachés, requêtes préparées (contre l'injection SQL), échappement des données affichées (contre le XSS), validation côté client et côté serveur
+- Informations de connexion à la base de données dans un **fichier de configuration**
 ## Fonctionnalités optionnelles
 - Choix d'un genre avant de swiper.
 - Classement public des titres les plus likés.
