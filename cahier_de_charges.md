@@ -50,6 +50,15 @@ Les titres proposés proviennent de l'**API gratuite de Deezer**. Elle permet de
 - **Administration** : l'administrateur gère les genres musicaux proposés et les comptes utilisateurs.
 - **Multilingue** : application disponible en français et en anglais.
 
+## Fonctionnalités optionnelles
+- Choix d'un genre avant de swiper.
+- Classement public des titres les plus likés.
+- Statistiques personnelles (genres et artistes préférés).
+- Annuler le dernier swipe.
+- Animation de swipe façon Tinder.
+- Découvrir les profils d'autres utilisateurs (pas seulement ses amis).
+- Connexion à Spotify pour importer ses artistes les plus écoutés (sous réserve des restrictions de l'API Spotify).
+
 ## Calcul de la compatibilité
 Lorsqu'un utilisateur consulte le profil d'un ami, l'application compare les titres qu'ils ont swipés tous les deux :
 
@@ -113,14 +122,6 @@ Relations :
 - Application disponible en **français et en anglais**
 - Sécurité : mots de passe hachés, requêtes préparées (contre l'injection SQL), échappement des données affichées (contre le XSS), validation côté client et côté serveur
 - Informations de connexion à la base de données dans un **fichier de configuration**
-## Fonctionnalités optionnelles
-- Choix d'un genre avant de swiper.
-- Classement public des titres les plus likés.
-- Statistiques personnelles (genres et artistes préférés).
-- Annuler le dernier swipe.
-- Animation de swipe façon Tinder.
-- Découvrir les profils d'autres utilisateurs (pas seulement ses amis).
-- Connexion à Spotify pour importer ses artistes les plus écoutés (sous réserve des restrictions de l'API Spotify).
 
 ---
 
