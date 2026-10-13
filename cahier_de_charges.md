@@ -159,7 +159,7 @@ Présent sur les pages connectées (7, 7b, 7e, 8, 9, 10, 11).
 | « Mes matchs » | Page 9 |
 | Icône signet + « Mes favoris » | Page 11 |
 | Bouton « FR / EN » | Change la langue de toute l'interface |
-| Icône profil | Page 7b Réglages |
+| Icône roue | Page 7b Réglages |
 | « Se déconnecter » | Ouvre la fenêtre de confirmation de déconnexion |
 
 Le lien de la page en cours est surligné (fond beige foncé, texte terracotta).
@@ -322,7 +322,7 @@ Messages :
 
 ### Page 7b — Réglages
 
-**Accès :** icône profil de l'en-tête.
+**Accès :** icône roue de l'en-tête.
 
 **Haut de page :** « ← Retour à l'accueil », titre « Réglages », bouton « Enregistrer ». Après l'enregistrement : « Modifications enregistrées ✓ ».
 **Menu latéral :** Mon profil · Instagram · Compte et sécurité · Supprimer mon compte (en rouge).
@@ -556,7 +556,7 @@ Messages :
 | Appareil connecté | id, utilisateur, appareil / navigateur, ville, dernière activité, expiration (30 jours) |
 | Extrait | id, titre, artiste, genre, fichier audio (30 s), pochette |
 | Session | id, utilisateur, date, extrait en cours, statut (en cours / enregistrée / terminée) |
-| Réponse | session, extrait, aimé ou ignoré |
+| Réponse | utilisateur, session, extrait, aimé ou ignoré, date de la réponse |
 | Favori | utilisateur, extrait, date d'ajout |
 | Partage Instagram | qui partage, qui reçoit, date |
 | Idée de date | id, genre, titre, description |
