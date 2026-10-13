@@ -258,7 +258,7 @@ Mention : « Tu restes connecté·e 30 jours sur cet appareil. »
 
 **État 1 — saisie de l'adresse :**
 
-- « ← Retour à la connexion » ramène à la page 3.
+- « ← Retour à la connexion » ramène à la page 3. Si l'utilisateur est connecté (il vient de la page 7e), le lien devient « ← Retour aux réglages » et ramène à la page 7b, et le champ « Adresse mail » est déjà rempli.
 - Champ « Adresse mail ».
 - Bouton « Envoyer le lien ».
 
@@ -285,8 +285,11 @@ Messages :
 | « Écris encore une fois le mot de passe » | S'il est différent : « Les deux mots de passe ne sont pas identiques. » |
 | « Confirmer » | Désactivé tant que les 4 règles ne sont pas respectées et que les deux champs ne sont pas identiques |
 
-**Écran de succès :** « Mot de passe modifié. Tu peux te reconnecter avec ton nouveau mot de passe. », bouton « Retour à la connexion → » vers la page 3.
-**Règle :** tous les appareils sont déconnectés.
+**Écran de succès :** « Mot de passe modifié. »
+- Si l'utilisateur n'était pas connecté : « Tu peux te reconnecter avec ton nouveau mot de passe. », bouton « Retour à la connexion → » vers la page 3.
+- Si l'utilisateur était connecté (il venait de la page 7e) : « Ton nouveau mot de passe est enregistré. », bouton « Retour à l'accueil → » vers la page 7.
+
+**Règle :** tous les autres appareils sont déconnectés. Si l'utilisateur était connecté sur cet appareil, il le reste.
 
 ### Pages 6a à 6f — Questions obligatoires (premier lancement)
 
