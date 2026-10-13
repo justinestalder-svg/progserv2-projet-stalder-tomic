@@ -143,9 +143,9 @@ Style minimaliste, fond beige, accents terracotta.
 
 La maquette compte **23 écrans**.
 
-![Plan du site SoundMatch](docs/images/plan_du_site.png)
+![Plan du site SoundMatch](docs/maquettes/images/plan_du_site.png)
 
-[Télécharger le plan du site en PDF](docs/images/plan_du_site.pdf)
+[Télécharger le plan du site en PDF](docs/maquettes/images/plan_du_site.pdf)
 
 ### En-tête commun
 
