@@ -42,24 +42,28 @@
 
 Les goûts communs comptent, mais aussi ce que vous n'aimez pas tous les deux : deux personnes qui détestent le rock ont aussi ça en commun.
 
+**Plus tu fais de sessions, plus tes matchs sont précis :** tes réponses s'additionnent d'une session à l'autre, rien n'est effacé.
+
 ### Le calcul, étape par étape
 
-1. Les 20 extraits sont répartis en **4 genres de 5 extraits**.
-2. Pour chaque genre, on calcule le **taux d'appréciation** de chaque personne :
+1. Une session contient **20 extraits**, répartis en **4 genres de 5 extraits**.
+2. Pour chaque genre, on calcule le **taux d'appréciation** de chaque personne, sur **tous** les extraits qu'elle a écoutés dans ce genre (toutes sessions confondues) :
 
-   ```
-   taux = nombre de J'aime dans ce genre ÷ 5
-   ```
+```
+   taux = nombre de J'aime dans ce genre ÷ nombre d'extraits écoutés dans ce genre
+```
 
 3. Pour chaque genre, on compare les deux personnes :
 
-   ```
+```
    score du genre = 100 − (écart entre les deux taux × 100)
-   ```
+```
 
 4. La **compatibilité** est la moyenne des 4 scores, arrondie à l'unité.
 
 ### Exemple 1 : Toi et Léa → 80 % (très compatibles)
+
+Après une première session (5 extraits écoutés par genre) :
 
 | Genre | Toi | Léa | Score du genre |
 |---|---|---|---|
@@ -79,14 +83,23 @@ Les goûts communs comptent, mais aussi ce que vous n'aimez pas tous les deux : 
 | Rock | 0/5 | 5/5 | 0 % (goûts opposés) |
 | **Compatibilité** | | | **25 %** |
 
+### Exemple 3 : ce qui change après plusieurs sessions
+
+Plus tard, de nouveaux extraits sont ajoutés. Tu as maintenant écouté 10 extraits d'électro et tu en as aimé 7 :
+
+```
+taux électro = 7 ÷ 10 = 0,7  (au lieu de 3 ÷ 5 = 0,6 après ta première session)
+```
+
+Ton profil devient plus précis, et ta compatibilité avec chaque personne est recalculée.
+
 ### Autres règles
 
-- **Sons aimés en commun :** nombre d'extraits que les deux personnes ont aimés.
+- **Nouvelle session :** les réponses s'ajoutent à celles des sessions précédentes, rien n'est effacé. Les matchs sont ensuite recalculés avec toutes les réponses.
+- **Extrait déjà écouté :** si l'utilisateur réécoute un extrait qu'il avait déjà évalué, sa nouvelle réponse remplace l'ancienne, pour cet extrait uniquement (les goûts peuvent changer).
+- **Sons aimés en commun :** nombre d'extraits que les deux personnes ont aimés (selon leur réponse la plus récente).
 - **Classement :** compatibilité décroissante. En cas d'égalité, le plus grand nombre de sons en commun passe en premier.
 - **Qui apparaît dans mes matchs :** tous les utilisateurs qui ont terminé au moins une session, hommes et femmes confondus, sauf moi-même et les comptes supprimés.
-- **Nouvelle session :** elle remplace les résultats de la précédente, et les matchs sont recalculés.
-
----
 
 ## 3. Glossaire
 
@@ -130,22 +143,9 @@ Style minimaliste, fond beige, accents terracotta.
 
 La maquette compte **23 écrans**.
 
-```
-1 Inscription ──► 1b Confirme ton mail ──(lien du mail)──► 2 Inscription réussie
-      ▲                                                         │
-      │                                                         ▼
-3 Se connecter ──(erreur)──► 3b Erreurs de connexion     6a Intro → 6b Genre → 6c Âge
-      │   └──► 4 Mot de passe oublié ──► 5 Nouveau mot de passe   → 6d Photo → 6e Instagram
-      │ (profil complet)                                          → 6f Profil prêt
-      ▼                                                         │
-7 Accueil ◄─────────────────────────────────────────────────────┘
-  ├─► 7b Réglages ──► 7c Appareils connectés
-  │               ──► 7d Supprimer mon compte
-  │               ──► 7e Modifier le mot de passe
-  ├─► 8 Session d'écoute ──(croix ✕)──► 8b Quitter une session
-  │        └──► 9 Mes matchs ──► 10 Compatibilité & idées de date
-  └─► 11 Mes favoris
-```
+![Plan du site SoundMatch](docs/images/plan_du_site.png)
+
+[Télécharger le plan du site en PDF](docs/images/plan_du_site.pdf)
 
 ### En-tête commun
 
