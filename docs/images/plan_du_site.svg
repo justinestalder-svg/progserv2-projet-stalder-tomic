@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#2B2420"/></marker>
+<marker id="art" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#C65D3B"/></marker>
+</defs>
+<rect width="1440" height="1180" fill="#F5EFE6"/>
+<text x="40" y="30" font-size="22" font-weight="700" fill="#2B2420">SoundMatch — Plan du site <tspan fill="#7A6E66" font-weight="400" font-size="16">(23 écrans)</tspan></text>
+<rect x="40" y="45" width="800" height="120" rx="18" fill="#FBF7F1" stroke="#E2D6C8"/>
+<text x="56" y="69" text-anchor="start" font-size="13" font-weight="700" letter-spacing="1.5" fill="#C65D3B">INSCRIPTION</text>
+<rect x="280" y="190" width="1120" height="115" rx="18" fill="#FBF7F1" stroke="#E2D6C8"/>
+<text x="1384" y="214" text-anchor="end" font-size="13" font-weight="700" letter-spacing="1.5" fill="#C65D3B">CRÉATION DU PROFIL</text>
+<rect x="40" y="350" width="800" height="200" rx="18" fill="#FBF7F1" stroke="#E2D6C8"/>
+<text x="824" y="374" text-anchor="end" font-size="13" font-weight="700" letter-spacing="1.5" fill="#C65D3B">CONNEXION</text>
+<rect x="40" y="585" width="1360" height="560" rx="18" fill="#F9EDE6" stroke="#E2D6C8"/>
+<text x="1000" y="609" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.5" fill="#C65D3B">APPLICATION (CONNECTÉ)</text>
+<rect x="60" y="85" width="200" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="70" y="99.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="81.5" y="116.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">1</text>
+<text x="103" y="116.0" font-size="15" fill="#2B2420">Inscription</text>
+<rect x="330" y="85" width="225" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="340" y="99.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="356.0" y="116.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">1b</text>
+<text x="382" y="116.0" font-size="15" fill="#2B2420">Confirme ton mail</text>
+<rect x="610" y="85" width="215" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="620" y="99.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="631.5" y="116.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">2</text>
+<text x="653" y="116.0" font-size="15" fill="#2B2420">Inscription réussie</text>
+<path d="M260,111 L326,111" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M555,111 L606,111" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="548" y="78" font-size="12" font-style="italic" fill="#7A6E66">lien du mail</text>
+<rect x="300" y="230" width="160" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="310" y="244.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="326.0" y="261.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">6a</text>
+<text x="352" y="261.0" font-size="15" fill="#2B2420">Intro</text>
+<rect x="484" y="230" width="160" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="494" y="244.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="510.0" y="261.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">6b</text>
+<text x="536" y="261.0" font-size="15" fill="#2B2420">Genre</text>
+<rect x="668" y="230" width="160" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="678" y="244.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="694.0" y="261.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">6c</text>
+<text x="720" y="261.0" font-size="15" fill="#2B2420">Âge</text>
+<rect x="852" y="230" width="160" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="862" y="244.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="878.0" y="261.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">6d</text>
+<text x="904" y="261.0" font-size="15" fill="#2B2420">Photo</text>
+<rect x="1036" y="230" width="160" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="1046" y="244.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="1062.0" y="261.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">6e</text>
+<text x="1088" y="261.0" font-size="15" fill="#2B2420">Instagram</text>
+<rect x="1220" y="230" width="160" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="1230" y="244.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="1246.0" y="261.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">6f</text>
+<text x="1272" y="261.0" font-size="15" fill="#2B2420">Profil prêt</text>
+<path d="M460,256 L480,256" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M644,256 L664,256" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M828,256 L848,256" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M1012,256 L1032,256" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M1196,256 L1216,256" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M715,137 L715,175 L380,175 L380,226" fill="none" stroke="#C65D3B" stroke-width="1.6" marker-end="url(#art)"/>
+<rect x="60" y="395" width="200" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="70" y="409.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="81.5" y="426.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">3</text>
+<text x="103" y="426.0" font-size="15" fill="#2B2420">Se connecter</text>
+<rect x="330" y="395" width="250" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="340" y="409.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="356.0" y="426.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">3b</text>
+<text x="382" y="426.0" font-size="15" fill="#2B2420">Erreurs de connexion</text>
+<rect x="330" y="475" width="220" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="340" y="489.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="351.5" y="506.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">4</text>
+<text x="373" y="506.0" font-size="15" fill="#2B2420">Mot de passe oublié</text>
+<rect x="610" y="475" width="220" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="620" y="489.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="631.5" y="506.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">5</text>
+<text x="653" y="506.0" font-size="15" fill="#2B2420">Nouveau mot de passe</text>
+<path d="M260,421 L326,421" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="272" y="413" font-size="12" font-style="italic" fill="#7A6E66">erreur</text>
+<path d="M220,447 L220,501 L326,501" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M550,501 L606,501" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M100,141 L100,391" fill="none" stroke="#2B2420" stroke-width="1.6" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="108" y="340" font-size="12" font-style="italic" fill="#7A6E66">déjà un compte ?</text>
+<rect x="620" y="615" width="220" height="58" rx="12" fill="#C65D3B"/>
+<rect x="630" y="632.0" width="23" height="24" rx="12" fill="#FFFFFF"/>
+<text x="641.5" y="649.0" text-anchor="middle" font-size="13" font-weight="700" fill="#C65D3B">7</text>
+<text x="663" y="649.0" font-size="15" fill="#FFFFFF">Accueil</text>
+<path d="M140,447 L140,644 L616,644" fill="none" stroke="#C65D3B" stroke-width="1.6" marker-end="url(#art)"/>
+<text x="150" y="636" font-size="12" font-style="italic" fill="#7A6E66">profil complet</text>
+<path d="M1300,282 L1300,644 L844,644" fill="none" stroke="#C65D3B" stroke-width="1.6" marker-end="url(#art)"/>
+<path d="M190,705 L1305,705 M730,673 L730,705" fill="none" stroke="#2B2420" stroke-width="1.6"/>
+<path d="M190,705 L190,756" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M520,705 L520,756" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M1305,705 L1305,756" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="80" y="760" width="220" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="90" y="774.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="106.0" y="791.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7b</text>
+<text x="132" y="791.0" font-size="15" fill="#2B2420">Réglages</text>
+<rect x="120" y="850" width="265" height="52" rx="12" fill="#FBF7F1" stroke="#C65D3B" stroke-width="1.2" stroke-dasharray="2 3"/>
+<text x="138" y="872" font-size="15" font-weight="700" fill="#2B2420">Mon profil</text>
+<text x="138" y="891" font-size="12" font-style="italic" fill="#7A6E66">section de la page Réglages</text>
+<path d="M100,876 L116,876" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="120" y="920" width="265" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="130" y="934.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="146.0" y="951.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7c</text>
+<text x="172" y="951.0" font-size="15" fill="#2B2420">Appareils connectés</text>
+<path d="M100,946 L116,946" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="120" y="990" width="265" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="130" y="1004.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="146.0" y="1021.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7d</text>
+<text x="172" y="1021.0" font-size="15" fill="#2B2420">Supprimer mon compte</text>
+<path d="M100,1016 L116,1016" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="120" y="1060" width="265" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="130" y="1074.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="146.0" y="1091.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7e</text>
+<text x="172" y="1091.0" font-size="15" fill="#2B2420">Modifier le mot de passe</text>
+<path d="M100,1086 L116,1086" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M100,812 L100,1086" fill="none" stroke="#2B2420" stroke-width="1.6"/>
+<rect x="420" y="760" width="200" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="430" y="774.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="441.5" y="791.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">8</text>
+<text x="463" y="791.0" font-size="15" fill="#2B2420">Session d'écoute</text>
+<rect x="700" y="760" width="180" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="710" y="774.0" width="23" height="24" rx="12" fill="#C65D3B"/>
+<text x="721.5" y="791.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">9</text>
+<text x="743" y="791.0" font-size="15" fill="#2B2420">Mes matchs</text>
+<rect x="930" y="760" width="275" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="940" y="774.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="956.0" y="791.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">10</text>
+<text x="982" y="791.0" font-size="15" fill="#2B2420">Compatibilité &amp; idées de date</text>
+<rect x="420" y="870" width="230" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6" stroke-dasharray="6 4"/>
+<rect x="430" y="884.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="446.0" y="901.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">8b</text>
+<text x="472" y="901.0" font-size="15" fill="#2B2420">Quitter une session</text>
+<path d="M620,786 L696,786" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="645" y="778" font-size="12" font-style="italic" fill="#7A6E66">fin</text>
+<path d="M880,786 L926,786" fill="none" stroke="#2B2420" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M520,812 L520,866" fill="none" stroke="#2B2420" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<text x="528" y="845" font-size="12" font-style="italic" fill="#7A6E66">croix ×</text>
+<rect x="1225" y="760" width="165" height="52" rx="12" fill="#FFFFFF" stroke="#C65D3B" stroke-width="1.6"/>
+<rect x="1235" y="774.0" width="32" height="24" rx="12" fill="#C65D3B"/>
+<text x="1251.0" y="791.0" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">11</text>
+<text x="1277" y="791.0" font-size="15" fill="#2B2420">Mes favoris</text>
+<path d="M385,1086 L400,1086 L400,531" fill="none" stroke="#C65D3B" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#art)"/>
+<text x="408" y="575" font-size="12" font-style="italic" fill="#C65D3B">depuis 7e : mot de passe</text>
+<text x="408" y="590" font-size="12" font-style="italic" fill="#C65D3B">actuel oublié</text>
+<path d="M720,527 L720,611" fill="none" stroke="#C65D3B" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#art)"/>
+<text x="728" y="583" font-size="12" font-style="italic" fill="#C65D3B">si connecté·e</text>
+<rect x="700" y="960" width="560" height="96" rx="12" fill="#FFFFFF" stroke="#E2D6C8"/>
+<path d="M720,1040 L770,1040" stroke="#C65D3B" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#art)"/>
+<text x="782" y="1044" font-size="13" fill="#7A6E66">Mot de passe oublié en étant connecté·e (depuis les Réglages)</text>
+<text x="720" y="986" font-size="13" font-weight="700" fill="#2B2420">En-tête commun</text>
+<text x="720" y="1008" font-size="13" fill="#7A6E66">Sur les pages 7, 7b, 7e, 8, 9, 10 et 11 (logo → retour à l'Accueil)</text>
+</svg>
