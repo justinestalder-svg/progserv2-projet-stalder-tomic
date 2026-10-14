@@ -75,6 +75,20 @@ CREATE TABLE extrait (
     FOREIGN KEY (id_genre) REFERENCES genre_musical(id_genre)
 );
 
+CREATE TABLE serie (
+    id_serie INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE serie_extrait (
+    id_serie INT NOT NULL,
+    id_extrait INT NOT NULL,
+    rang INT NOT NULL,
+    PRIMARY KEY (id_serie, id_extrait),
+    FOREIGN KEY (id_serie) REFERENCES serie(id_serie),
+    FOREIGN KEY (id_extrait) REFERENCES extrait(id_extrait)
+);
+
 CREATE TABLE favori (
     id_profil INT NOT NULL,
     id_extrait INT NOT NULL,
@@ -89,17 +103,17 @@ CREATE TABLE session_ecoute (
     date_debut DATETIME NOT NULL,
     statut VARCHAR(20) NOT NULL,
     rang_courant INT NOT NULL,
-    nb_extraits INT NOT NULL,
     id_profil INT NOT NULL,
-    FOREIGN KEY (id_profil) REFERENCES profil(id_profil)
+    id_serie INT NOT NULL,
+    FOREIGN KEY (id_profil) REFERENCES profil(id_profil),
+    FOREIGN KEY (id_serie) REFERENCES serie(id_serie)
 );
 
 CREATE TABLE reaction (
     id_session INT NOT NULL,
     id_extrait INT NOT NULL,
-    rang INT NOT NULL,
-    choix VARCHAR(10),
-    date_reaction DATETIME,
+    choix VARCHAR(10) NOT NULL,
+    date_reaction DATETIME NOT NULL,
     PRIMARY KEY (id_session, id_extrait),
     FOREIGN KEY (id_session) REFERENCES session_ecoute(id_session),
     FOREIGN KEY (id_extrait) REFERENCES extrait(id_extrait)
