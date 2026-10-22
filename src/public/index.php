@@ -1,49 +1,46 @@
 <?php
-const DB_HOST = 'mariadb';
-const DB_PORT = 3306;
-const DB_NAME = 'my_database';
-const DB_USER = 'username';
-const DB_PASSWORD = 'password';
+// On charge la classe Database.
+// __DIR__ = src/public, donc /../classes/ = src/classes/
+require_once __DIR__ . '/../classes/Database.php';
 
-$dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+// On crée l'objet : le constructeur se connecte à la base.
+$database = new Database();
+$pdo = $database->getPdo();
 
-$pdo = new PDO($dsn, DB_USER, DB_PASSWORD);
-
-$sql = "SELECT * FROM my_table";
-
+// Requête simple, sans donnée venant de l'utilisateur :
+// pas besoin de bindValue ici, mais on garde prepare/execute par habitude.
+$sql = "SELECT id_genre, libelle FROM genre_musical ORDER BY libelle";
 $stmt = $pdo->prepare($sql);
-
 $stmt->execute();
 
-$results = $stmt->fetchAll();
+// fetchAll() renvoie un tableau de lignes ([] si la table est vide).
+$genres = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProgServ2 Course PHP Template</title>
+    <title>SoundMatch</title>
 </head>
 
 <body>
-    <h1>ProgServ2 Course PHP Template</h1>
+    <h1>SoundMatch</h1>
+    <p>Projet réalisé dans le cadre du cours ProgServ2 à la HEIG-VD.</p>
 
-    <p>Bienvenue dans votre projet PHP pour le cours ProgServ2 à la HEIG-VD !</p>
+    <h2>Genres musicaux</h2>
 
-    <h2>Résultats de la base de données :</h2>
-
-    <ul>
-        <?php foreach ($results as $row) { ?>
-            <li>ID: <?= htmlspecialchars($row['id']) ?>
-                <ul>
-                    <li>Column1: <?= htmlspecialchars($row['column1']) ?></li>
-                    <li>Column2: <?= htmlspecialchars($row['column2']) ?></li>
-                </ul>
-            </li>
-        <?php } ?>
-    </ul>
+    <?php if (empty($genres)) { ?>
+        <p>Aucun genre dans la base de données.</p>
+    <?php } else { ?>
+        <ul>
+            <?php foreach ($genres as $genre) { ?>
+                <!-- htmlspecialchars : protection XSS, même pour des données de la base -->
+                <li><?= htmlspecialchars($genre['libelle']) ?></li>
+            <?php } ?>
+        </ul>
+    <?php } ?>
 </body>
 
 </html>
