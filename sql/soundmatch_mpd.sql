@@ -102,7 +102,6 @@ CREATE TABLE session_ecoute (
     id_session INT AUTO_INCREMENT PRIMARY KEY,
     date_debut DATETIME NOT NULL,
     statut VARCHAR(20) NOT NULL,
-    rang_courant INT NOT NULL,
     id_profil INT NOT NULL,
     id_serie INT NOT NULL,
     FOREIGN KEY (id_profil) REFERENCES profil(id_profil),
