@@ -42,6 +42,8 @@
 
 Les goûts communs comptent, mais aussi ce que vous n'aimez pas tous les deux : deux personnes qui détestent le rock ont aussi ça en commun.
 
+Chaque session utilise une série de 20 extraits, définie à l'avance, etles matchs comparent deux profils indépendamment d'une session particulière.
+
 **Plus tu fais de sessions, plus tes matchs sont précis :** tes réponses s'additionnent d'une session à l'autre, rien n'est effacé.
 
 ### Le calcul, étape par étape
@@ -170,7 +172,6 @@ Le lien de la page en cours est surligné (fond beige foncé, texte terracotta).
 - Texte : « Tu devras te reconnecter avec ton adresse mail ou ton pseudo pour revenir sur SoundMatch. »
 - « Annuler » ferme la fenêtre.
 - « Oui, me déconnecter » ferme la session sur cet appareil et renvoie vers la page 3.
-- Si l'utilisateur se déconnecte pendant une session d'écoute, sa progression est enregistrée.
 
 ---
 
@@ -420,7 +421,6 @@ Messages :
 - L'extrait dure 30 secondes, mais **on n'est pas obligé de l'écouter en entier** : on peut répondre J'aime ou J'ignore à tout moment.
 - La lecture démarre automatiquement à chaque nouvel extrait.
 - Après le 20e choix : « Session terminée ! Tu as aimé X sons sur 20. » Deux boutons : « ← Revenir en arrière » et « Voir mes matchs → » (page 9).
-- Si l'utilisateur avait enregistré une session pour plus tard (page 8b), la page 8 la reprend directement à l'extrait où il s'était arrêté.
 
 ### Page 8b — Quitter une session
 
@@ -430,11 +430,10 @@ Messages :
 
 | Élément | Action |
 |---|---|
-| **Croix ✕** (en haut à droite de la fenêtre) | Ferme la fenêtre et revient au jeu : la musique reprend là où elle s'était arrêtée |
-| « Quitter la session définitivement » | Supprime les réponses de cette session et ramène à la page 7 Accueil. La prochaine session recommencera à l'extrait 1 |
-| « Enregistrer et continuer après » | Enregistre la progression (extrait en cours, J'aime / J'ignore déjà donnés, favoris) et ramène à la page 7 Accueil. À la prochaine ouverture de la page 8, la session reprend à cet extrait |
+| **Croix ✕** (en haut à droite de la fenêtre) | Ferme la fenêtre et revient au jeu : la musique reprend là où elle s'était arrêtée. |
+| « Quitter la session définitivement » | Abandonne la session en cours, supprime les réactions associées et ramène à la page 7 Accueil. Une nouvelle session recommencera au premier extrait. |
 
-**Règle :** si l'utilisateur se déconnecte ou ferme l'application pendant une session sans passer par cette fenêtre, la progression est enregistrée automatiquement, comme avec « Enregistrer et continuer après ».
+**Règle :** Si l'utilisateur quitte ou ferme l'application avant d'avoir terminé les 20 extraits, la session est abandonnée et ses réactions ne sont pas conservées. Il n'est pas possible d'enregistrer une session pour la reprendre plus tard.
 
 ### Page 9 — Mes matchs
 
@@ -524,8 +523,8 @@ Messages :
 12. En tant qu'utilisateur, je veux écouter 20 extraits et répondre J'aime ou J'ignore sans être obligé de les écouter en entier, afin d'aller à mon rythme.
 13. En tant qu'utilisateur, je veux mettre en pause, avancer, reculer et recommencer un extrait, afin de bien l'écouter.
 14. En tant qu'utilisateur, je veux revenir au son précédent, afin de corriger un choix.
-15. En tant qu'utilisateur, je veux pouvoir quitter une session en choisissant de l'abandonner ou de l'enregistrer pour la continuer plus tard, afin de ne pas perdre mes réponses.
-16. En tant qu'utilisateur, je veux pouvoir fermer la fenêtre « Quitter » avec une croix, afin de revenir au jeu si j'ai cliqué par erreur.
+15. En tant qu'utilisateur, je veux pouvoir quitter une session en cours après confirmation, afin de revenir à l'accueil en sachant que ma progression sera abandonnée.
+16. 16. En tant qu'utilisateur, je veux pouvoir fermer la fenêtre « Quitter » avec une croix, afin de revenir au jeu si j'ai cliqué par erreur.
 17. En tant qu'utilisateur, je veux ajouter un extrait à mes favoris, afin de le retrouver plus tard.
 
 ### Matchs
@@ -558,11 +557,14 @@ Messages :
 | Utilisateur | id, pseudo, mail, mot de passe (chiffré), mail confirmé (oui/non), genre, date de naissance, photo, pseudo Instagram, langue, nombre d'échecs de connexion, blocage jusqu'à (date), date de création |
 | Appareil connecté | id, utilisateur, appareil / navigateur, ville, dernière activité, expiration (30 jours) |
 | Extrait | id, titre, artiste, genre, fichier audio (30 s), pochette |
-| Session | id, utilisateur, date, extrait en cours, statut (en cours / enregistrée / terminée) |
+| Session | id, utilisateur, série utilisée, date de début, statut (en cours / terminée) |
 | Réponse | utilisateur, session, extrait, aimé ou ignoré, date de la réponse |
 | Favori | utilisateur, extrait, date d'ajout |
 | Partage Instagram | qui partage, qui reçoit, date |
 | Idée de date | id, genre, titre, description |
+| Série | id, nom |
+| Série_extrait | série, extrait, rang de l'extrait dans la série |
+| Match | id, profil 1, profil 2, score global, nombre de sons communs, date du match, titre du duo, texte d'analyse |
 
 ---
 
