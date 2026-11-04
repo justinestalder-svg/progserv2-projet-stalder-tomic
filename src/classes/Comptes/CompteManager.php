@@ -62,6 +62,18 @@ class CompteManager implements CompteManagerInterface {
         return $ligne ? $this->creerCompte($ligne) : null;
     }
 
+    public function getCompteByPseudo(string $pseudo): ?Compte {
+        $sql = "SELECT * FROM compte WHERE pseudo = :pseudo";
+
+        $stmt = $this->database->getPdo()->prepare($sql);
+        $stmt->bindValue(':pseudo', $pseudo);
+        $stmt->execute();
+
+        $ligne = $stmt->fetch();
+
+        return $ligne ? $this->creerCompte($ligne) : null;
+    }
+
     public function addCompte(Compte $compte): int {
         $sql = "INSERT INTO compte (pseudo, email, mot_de_passe_hash, langue, email_confirme,
                     date_inscription, date_acceptation_cgu, nb_echecs_connexion, bloque_jusqua)
