@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../utils/autoloader.php';
+require_once __DIR__ . '/../utils/langue.php';
 
 use Comptes\CompteManager;
 
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $motDePasse = $_POST['mot_de_passe'] ?? '';
 
     if ($identifiant === '' || $motDePasse === '') {
-        $erreur = "Remplis ton adresse mail (ou ton pseudo) et ton mot de passe.";
+        $erreur = $textes['erreur_champs_vides'];
     } else {
         $compteManager = new CompteManager();
 
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($compte !== null && $compte->getBloqueJusqua() !== null && $compte->getBloqueJusqua() > new DateTime()) {
             // Le compte est bloqué : on refuse, même si le mot de passe est juste
-            $erreur = "Trop de tentatives. Réessaie après " . $compte->getBloqueJusqua()->format('H:i') . ".";
+            $erreur = $textes['erreur_bloque'] . ' ' . $compte->getBloqueJusqua()->format('H:i') . ".";
         } else if ($compte !== null && password_verify($motDePasse, $compte->getMotDePasseHash())) {
             // Mot de passe correct : on remet le compteur d'échecs à zéro
             $compte->setNbEchecsConnexion(0);
@@ -52,28 +53,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Toujours le même message, pour ne pas révéler si le compte existe
-            $erreur = "Adresse mail, pseudo ou mot de passe incorrect.";
+            $erreur = $textes['erreur_connexion'];
         }
     }
 }
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= $langue ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Se connecter | SoundMatch</title>
+    <title><?= $textes['connexion_titre'] ?> | SoundMatch</title>
 </head>
 
 <body>
-    <h1>Se connecter</h1>
+    <p>
+        <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
+    </p>
+
+    <h1><?= $textes['connexion_titre'] ?></h1>
 
     <?php if ($compteConnecte !== null) { ?>
         <!-- Plus tard (séance sur les sessions), on redirigera vers l'accueil de la personne connectée -->
         <p>
-            Connexion réussie ! Bonjour <?= htmlspecialchars($compteConnecte->getPseudo()) ?> 👋
+            <?= $textes['connexion_succes'] ?> <?= htmlspecialchars($compteConnecte->getPseudo()) ?> 👋
         </p>
     <?php } ?>
 
@@ -83,25 +88,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="post">
         <div>
-            <label for="identifiant">Adresse mail ou pseudo</label>
+            <label for="identifiant"><?= $textes['connexion_identifiant'] ?></label>
             <input type="text" id="identifiant" name="identifiant" placeholder="toi@mail.com"
                 required maxlength="255" autocomplete="username"
                 value="<?= htmlspecialchars($identifiant) ?>">
         </div>
 
         <div>
-            <label for="mot_de_passe">Mot de passe</label>
+            <label for="mot_de_passe"><?= $textes['connexion_mot_de_passe'] ?></label>
             <!-- On ne remet jamais le mot de passe dans le champ après une erreur -->
             <input type="password" id="mot_de_passe" name="mot_de_passe"
                 required autocomplete="current-password">
         </div>
 
-        <button type="submit">Se connecter</button>
+        <button type="submit"><?= $textes['connexion_bouton'] ?></button>
     </form>
 
     <div>
-        <span>Pas encore de compte ?</span>
-        <a href="inscription.php">Créer un compte</a>
+        <span><?= $textes['connexion_pas_de_compte'] ?></span>
+        <a href="inscription.php"><?= $textes['connexion_lien_inscription'] ?></a>
     </div>
 </body>
 

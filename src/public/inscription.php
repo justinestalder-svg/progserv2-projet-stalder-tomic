@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../utils/autoloader.php';
+require_once __DIR__ . '/../utils/langue.php';
 
 use Comptes\Compte;
 use Comptes\CompteManager;
@@ -19,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 1. Vérification des champs
     if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
-        $erreurs['pseudo'] = "Le pseudo doit contenir entre 3 et 20 caractères.";
+        $erreurs['pseudo'] = $textes['erreur_pseudo'];
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erreurs['email'] = "L'adresse e-mail n'est pas valide.";
+        $erreurs['email'] = $textes['erreur_email'];
     }
 
     if (
@@ -32,22 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         || !preg_match('/[0-9]/', $motDePasse)
         || !preg_match('/[^A-Za-z0-9]/', $motDePasse)
     ) {
-        $erreurs['mot_de_passe'] = "Le mot de passe ne respecte pas toutes les règles.";
+        $erreurs['mot_de_passe'] = $textes['erreur_mot_de_passe'];
     }
 
     if (!$cguAcceptees) {
-        $erreurs['cgu'] = "Tu dois accepter les termes et conditions.";
+        $erreurs['cgu'] = $textes['erreur_cgu'];
     }
 
     // 2. Le pseudo et l'e-mail ne doivent pas déjà être utilisés
     $compteManager = new CompteManager();
 
     if (!isset($erreurs['pseudo']) && $compteManager->getCompteByPseudo($pseudo) !== null) {
-        $erreurs['pseudo'] = "Ce pseudo est déjà utilisé.";
+        $erreurs['pseudo'] = $textes['erreur_pseudo_utilise'];
     }
 
     if (!isset($erreurs['email']) && $compteManager->getCompteByEmail($email) !== null) {
-        $erreurs['email'] = "Cette adresse e-mail est déjà utilisée.";
+        $erreurs['email'] = $textes['erreur_email_utilise'];
     }
 
     // 3. Tout est bon : on crée le compte (le mot de passe est enregistré haché, jamais en clair)
@@ -57,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pseudo,
             $email,
             password_hash($motDePasse, PASSWORD_DEFAULT),
-            'fr',
+            $langue, // la langue choisie avec le cookie
             false,
             new DateTime(),
             new DateTime()
@@ -73,24 +74,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= $langue ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer ton compte | SoundMatch</title>
+    <title><?= $textes['inscription_titre'] ?> | SoundMatch</title>
 </head>
 
 <body>
-    <h1>Créer ton compte</h1>
+    <p>
+        <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
+    </p>
+
+    <h1><?= $textes['inscription_titre'] ?></h1>
 
     <?php if ($succes) { ?>
-        <p>Ton compte a été créé ! Tu peux maintenant te connecter.</p>
+        <p><?= $textes['inscription_succes'] ?></p>
     <?php } ?>
 
     <form method="post">
         <div>
-            <label for="pseudo">Nom d'utilisateur / pseudo</label>
+            <label for="pseudo"><?= $textes['inscription_pseudo'] ?></label>
             <input type="text" id="pseudo" name="pseudo" placeholder="ex. lea.vinyl"
                 minlength="3" maxlength="20" required
                 value="<?= htmlspecialchars($pseudo) ?>">
@@ -100,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div>
-            <label for="email">Adresse mail</label>
+            <label for="email"><?= $textes['inscription_email'] ?></label>
             <input type="email" id="email" name="email" placeholder="toi@mail.com" required
                 value="<?= htmlspecialchars($email) ?>">
             <?php if (isset($erreurs['email'])) { ?>
@@ -109,15 +114,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div>
-            <label for="mot_de_passe">Mot de passe</label>
+            <label for="mot_de_passe"><?= $textes['inscription_mot_de_passe'] ?></label>
             <!-- On ne remet jamais le mot de passe dans le champ après une erreur -->
             <input type="password" id="mot_de_passe" name="mot_de_passe"
-                placeholder="Minimum 10 caractères" minlength="10" required>
+                placeholder="<?= $textes['inscription_regle_longueur'] ?>" minlength="10" required>
             <ul>
-                <li>10 caractères minimum</li>
-                <li>Une majuscule</li>
-                <li>Un chiffre</li>
-                <li>Un caractère spécial</li>
+                <li><?= $textes['inscription_regle_longueur'] ?></li>
+                <li><?= $textes['inscription_regle_majuscule'] ?></li>
+                <li><?= $textes['inscription_regle_chiffre'] ?></li>
+                <li><?= $textes['inscription_regle_special'] ?></li>
             </ul>
             <?php if (isset($erreurs['mot_de_passe'])) { ?>
                 <p><?= htmlspecialchars($erreurs['mot_de_passe']) ?></p>
@@ -126,18 +131,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label for="cgu">
             <input type="checkbox" id="cgu" name="cgu" required>
-            <span>J'accepte les <a href="cgu.php">termes et conditions</a></span>
+            <span><?= $textes['inscription_cgu_debut'] ?> <a href="cgu.php"><?= $textes['inscription_cgu_lien'] ?></a></span>
         </label>
         <?php if (isset($erreurs['cgu'])) { ?>
             <p><?= htmlspecialchars($erreurs['cgu']) ?></p>
         <?php } ?>
 
-        <button type="submit">Créer mon compte</button>
+        <button type="submit"><?= $textes['inscription_bouton'] ?></button>
     </form>
 
     <div>
-        <span>Déjà un compte ?</span>
-        <a href="connexion.php">Se connecter</a>
+        <span><?= $textes['inscription_deja_compte'] ?></span>
+        <a href="connexion.php"><?= $textes['inscription_lien_connexion'] ?></a>
     </div>
 </body>
 

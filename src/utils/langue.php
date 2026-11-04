@@ -1,4 +1,8 @@
 <?php
+// Ce fichier choisit la langue de la page, la garde dans un cookie,
+// puis charge les textes traduits dans $textes.
+// On l'inclut en haut de chaque page, AVANT le HTML.
+
 // Langue par défaut
 $langue = 'fr';
 
@@ -15,3 +19,6 @@ else if (isset($_COOKIE['langue'])) {
         $langue = $_COOKIE['langue'];
     }
 }
+
+// 3. On charge le fichier de traduction : i18n/fr.php ou i18n/en.php
+$textes = require __DIR__ . '/../i18n/' . $langue . '.php';
