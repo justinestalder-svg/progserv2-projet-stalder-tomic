@@ -21,8 +21,7 @@ class GenreMusicalManager implements GenreMusicalManagerInterface {
 
     // Récupérer tous les genres musicaux
     public function getGenresMusicaux(): array {
-        $sql = "SELECT * FROM genre_musical";
-
+        $sql = "SELECT * FROM genre_musical ORDER BY libelle";
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->execute();
 
