@@ -148,3 +148,66 @@ CREATE TABLE idee_date (
     id_genre INT NOT NULL,
     FOREIGN KEY (id_genre) REFERENCES genre_musical(id_genre)
 );
+
+
+-- Créer un compte fictif
+INSERT INTO compte (
+    pseudo,
+    email,
+    mot_de_passe_hash,
+    date_inscription,
+    date_acceptation_cgu
+)
+VALUES (
+    'test_session_01',
+    'test-session-01@example.com',
+    'hash_fictif_non_utilisable',
+    NOW(),
+    NOW()
+);
+
+-- Créer un profil associé à ce compte
+INSERT INTO profil (
+    genre,
+    date_naissance,
+    photo_profil,
+    nom_instagram,
+    ville,
+    id_compte
+)
+VALUES (
+    'femme',
+    '2002-05-15',
+    'photo-test.jpg',
+    'profil_test',
+    'Lausanne',
+    LAST_INSERT_ID()
+);
+
+-- Afficher l'identifiant du profil créé
+SELECT id_profil, id_compte
+FROM profil
+WHERE id_compte = (
+    SELECT id_compte
+    FROM compte
+    WHERE pseudo = 'test_session_01'
+);
+
+-- Supprimer le profil fictif
+DELETE FROM profil
+WHERE id_compte = (
+    SELECT id_compte
+    FROM compte
+    WHERE pseudo = 'test_session_01'
+);
+
+-- Supprimer le compte fictif
+DELETE FROM compte
+WHERE pseudo = 'test_session_01';
+
+
+select * from profil;
+
+UPDATE profil
+SET id_profil = 1
+WHERE id_profil = 2;
