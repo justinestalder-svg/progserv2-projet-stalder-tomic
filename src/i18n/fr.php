@@ -12,7 +12,6 @@ return [
 
     // Page d'inscription
     'inscription_titre' => 'Créer ton compte',
-    'inscription_succes' => 'Ton compte a été créé ! Tu peux maintenant te connecter.',
     'inscription_pseudo' => "Nom d'utilisateur / pseudo",
     'inscription_email' => 'Adresse mail',
     'inscription_mot_de_passe' => 'Mot de passe',
@@ -36,7 +35,6 @@ return [
 
     // Page de connexion
     'connexion_titre' => 'Se connecter',
-    'connexion_succes' => 'Connexion réussie ! Bonjour',
     'connexion_identifiant' => 'Adresse mail ou pseudo',
     'connexion_mot_de_passe' => 'Mot de passe',
     'connexion_bouton' => 'Se connecter',
@@ -47,4 +45,9 @@ return [
     'erreur_champs_vides' => 'Remplis ton adresse mail (ou ton pseudo) et ton mot de passe.',
     'erreur_bloque' => 'Trop de tentatives. Réessaie après',
     'erreur_connexion' => 'Adresse mail, pseudo ou mot de passe incorrect.',
+
+    // Page profil
+    'profil_titre' => 'Mon profil',
+    'profil_bonjour' => 'Bonjour',
+    'profil_deconnexion' => 'Se déconnecter',
 ];

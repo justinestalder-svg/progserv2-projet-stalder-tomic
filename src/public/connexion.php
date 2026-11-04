@@ -1,4 +1,7 @@
 <?php
+// On démarre la session (avant tout HTML)
+session_start();
+
 require_once __DIR__ . '/../utils/autoloader.php';
 require_once __DIR__ . '/../utils/langue.php';
 
@@ -10,7 +13,6 @@ const DUREE_BLOCAGE = '+15 minutes';
 
 $identifiant = '';
 $erreur = null;
-$compteConnecte = null;
 
 // Le formulaire a été envoyé
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,9 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $compteManager = new CompteManager();
 
         // On cherche le compte par adresse mail, ou par pseudo
-        $compte = filter_var($identifiant, FILTER_VALIDATE_EMAIL)
-            ? $compteManager->getCompteByEmail($identifiant)
-            : $compteManager->getCompteByPseudo($identifiant);
+        if (filter_var($identifiant, FILTER_VALIDATE_EMAIL)) {
+            $compte = $compteManager->getCompteByEmail($identifiant);
+        } else {
+            $compte = $compteManager->getCompteByPseudo($identifiant);
+        }
 
         if ($compte !== null && $compte->getBloqueJusqua() !== null && $compte->getBloqueJusqua() > new DateTime()) {
             // Le compte est bloqué : on refuse, même si le mot de passe est juste
@@ -36,8 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $compte->setBloqueJusqua(null);
             $compteManager->updateCompte($compte);
 
-            $compteConnecte = $compte;
-            $identifiant = '';
+            // Nouvel identifiant de session, pour plus de sécurité
+            session_regenerate_id(true);
+
+            // On garde la personne connectée dans la session
+            $_SESSION['id_compte'] = $compte->getId();
+            $_SESSION['pseudo'] = $compte->getPseudo();
+
+            // On l'envoie sur sa page privée
+            header('Location: profil.php');
+            exit();
         } else {
             // Mauvais mot de passe : on compte l'échec, et on bloque après 5 échecs
             if ($compte !== null) {
@@ -74,13 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </p>
 
     <h1><?= $textes['connexion_titre'] ?></h1>
-
-    <?php if ($compteConnecte !== null) { ?>
-        <!-- Plus tard (séance sur les sessions), on redirigera vers l'accueil de la personne connectée -->
-        <p>
-            <?= $textes['connexion_succes'] ?> <?= htmlspecialchars($compteConnecte->getPseudo()) ?> 👋
-        </p>
-    <?php } ?>
 
     <?php if ($erreur !== null) { ?>
         <p><?= htmlspecialchars($erreur) ?></p>

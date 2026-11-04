@@ -1,4 +1,7 @@
 <?php
+// On démarre la session (avant tout HTML)
+session_start();
+
 require_once __DIR__ . '/../utils/autoloader.php';
 require_once __DIR__ . '/../utils/langue.php';
 
@@ -9,7 +12,6 @@ use Comptes\CompteManager;
 $pseudo = '';
 $email = '';
 $erreurs = [];
-$succes = false;
 
 // Le formulaire a été envoyé
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -64,11 +66,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             new DateTime()
         );
 
-        $compteManager->addCompte($compte);
+        // addCompte renvoie l'id du nouveau compte
+        $idCompte = $compteManager->addCompte($compte);
 
-        $succes = true;
-        $pseudo = '';
-        $email = '';
+        // On connecte directement la personne, sans repasser par la connexion
+        session_regenerate_id(true);
+        $_SESSION['id_compte'] = $idCompte;
+        $_SESSION['pseudo'] = $pseudo;
+
+        // On l'envoie sur sa page privée
+        header('Location: profil.php');
+        exit();
     }
 }
 
@@ -88,10 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </p>
 
     <h1><?= $textes['inscription_titre'] ?></h1>
-
-    <?php if ($succes) { ?>
-        <p><?= $textes['inscription_succes'] ?></p>
-    <?php } ?>
 
     <form method="post">
         <div>
