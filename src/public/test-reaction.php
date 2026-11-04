@@ -2,6 +2,10 @@
 
 require_once __DIR__ . '/../utils/autoloader.php';
 
+use Comptes\Compte;
+use Comptes\CompteManager;
+use Profils\Profil;
+use Profils\ProfilManager;
 use Reactions\Reaction;
 use Reactions\ReactionManager;
 use Sessions\SessionEcoute;
@@ -13,34 +17,34 @@ use Extraits\ExtraitManager;
 use Genres\GenreMusical;
 use Genres\GenreMusicalManager;
 
+$compteManager = new CompteManager();
+$profilManager = new ProfilManager();
 $reactionManager = new ReactionManager();
 $sessionManager = new SessionEcouteManager();
 $serieManager = new SerieManager();
 $extraitManager = new ExtraitManager();
 $genreManager = new GenreMusicalManager();
 
+$idCompte = null;
+$idProfil = null;
 $idGenre = null;
 $idExtrait = null;
 $idSerie = null;
 $idSession = null;
 
-// Identifiant d'un profil de test existant
-$idProfil = 1;
-
 try {
-    $pdo = (new Database())->getPdo();
+    // 0. Une session appartient à un profil : on crée un compte et un profil de test
+    //    (au lieu d'utiliser un id écrit en dur, qui peut ne plus exister)
+    $idCompte = $compteManager->addCompte(new Compte(
+        null, 'test_reaction', 'test.reaction@example.com',
+        password_hash('motdepasse123', PASSWORD_DEFAULT), 'fr', false,
+        new DateTime(), new DateTime()
+    ));
 
-    // Vérifier que le profil existe
-    $stmt = $pdo->prepare(
-        "SELECT id_profil FROM profil WHERE id_profil = :id"
-    );
-    $stmt->execute([':id' => $idProfil]);
-
-    if (!$stmt->fetch()) {
-        throw new Exception(
-            "Le profil de test n'existe pas. Vérifie idProfil."
-        );
-    }
+    $idProfil = $profilManager->addProfil(new Profil(
+        null, 'femme', new DateTime('2002-03-01'), 'uploads/test.jpg',
+        'test.reaction', null, $idCompte
+    ));
 
     // 1. Créer un genre musical
     $genre = new GenreMusical(null, 'Genre Test Reaction');
@@ -174,5 +178,14 @@ try {
 
     if ($idGenre !== null) {
         $genreManager->removeGenreMusical($idGenre);
+    }
+
+    // On supprime d'abord le profil (il dépend du compte), puis le compte
+    if ($idProfil !== null) {
+        $profilManager->removeProfil($idProfil);
+    }
+
+    if ($idCompte !== null) {
+        $compteManager->removeCompte($idCompte);
     }
 }
