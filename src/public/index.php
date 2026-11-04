@@ -1,21 +1,16 @@
 <?php
-// On charge la classe Database.
-// __DIR__ = src/public, donc /../classes/ = src/classes/
-require_once __DIR__ . '/../classes/Database.php';
+// On charge l'autoloader : il charge automatiquement toutes les classes dont on a besoin.
+// __DIR__ = src/public, donc /../utils/ = src/utils/
+require_once __DIR__ . '/../utils/autoloader.php';
 
-// On crée l'objet : le constructeur se connecte à la base.
-$database = new Database();
-$pdo = $database->getPdo();
+use Genres\GenreMusicalManager;
 
-// Requête simple, sans donnée venant de l'utilisateur :
-// pas besoin de bindValue ici, mais on garde prepare/execute par habitude.
-$sql = "SELECT id_genre, libelle FROM genre_musical ORDER BY libelle";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-
-// fetchAll() renvoie un tableau de lignes ([] si la table est vide).
-$genres = $stmt->fetchAll();
+// La page ne fait plus de SQL elle-même : elle demande les genres au manager.
+// getGenresMusicaux() renvoie un tableau d'objets GenreMusical, triés par libellé.
+$genreManager = new GenreMusicalManager();
+$genres = $genreManager->getGenresMusicaux();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -37,7 +32,7 @@ $genres = $stmt->fetchAll();
         <ul>
             <?php foreach ($genres as $genre) { ?>
                 <!-- htmlspecialchars : protection XSS, même pour des données de la base -->
-                <li><?= htmlspecialchars($genre['libelle']) ?></li>
+                <li><?= htmlspecialchars($genre->getLibelle()) ?></li>
             <?php } ?>
         </ul>
     <?php } ?>
