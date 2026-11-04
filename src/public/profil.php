@@ -29,5 +29,11 @@ if (!isset($_SESSION['id_compte'])) {
 
     <a href="deconnexion.php"><?= $textes['profil_deconnexion'] ?></a>
 </body>
+<?php if (!$cookiesAcceptes) { ?>
+    <p>
+        <?= $textes['cookies_message'] ?>
+        <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+    </p>
+<?php } ?>
 
 </html>

@@ -22,3 +22,14 @@ else if (isset($_COOKIE['langue'])) {
 
 // 3. On charge le fichier de traduction : i18n/fr.php ou i18n/en.php
 $textes = require __DIR__ . '/../i18n/' . $langue . '.php';
+
+// Bandeau d'information sur les cookies
+$cookiesAcceptes = false;
+
+if (isset($_GET['cookies']) && $_GET['cookies'] === 'ok') {
+    // La personne a cliqué sur OK : on s'en souvient pendant 1 an
+    setcookie('cookies_ok', 'oui', time() + 60 * 60 * 24 * 365, '/');
+    $cookiesAcceptes = true;
+} else if (isset($_COOKIE['cookies_ok'])) {
+    $cookiesAcceptes = true;
+}
