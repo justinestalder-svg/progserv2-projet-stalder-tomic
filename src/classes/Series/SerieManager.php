@@ -29,10 +29,14 @@ class SerieManager implements SerieManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(
-            fn($ligne) => $this->creerSerie($ligne),
-            $lignes
-        );
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerSerie($ligne);
+        }
+
+        return $resultats;
     }
 
     // Récupérer une série par son identifiant
@@ -45,8 +49,11 @@ class SerieManager implements SerieManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerSerie($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerSerie($ligne);
+        }
+
+        return null;   }
 
     // Ajouter une série
     public function addSerie(Serie $serie): int {
@@ -146,8 +153,11 @@ class SerieManager implements SerieManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(
-            fn($ligne) => new Extrait(
+        $extraits = [];
+
+        // On transforme chaque ligne de la base en objet Extrait
+        foreach ($lignes as $ligne) {
+            $extraits[] = new Extrait(
                 (int) $ligne['id_extrait'],
                 $ligne['titre'],
                 $ligne['artiste'],
@@ -155,9 +165,10 @@ class SerieManager implements SerieManagerInterface {
                 $ligne['url_audio'],
                 $ligne['couleur_pochette'],
                 (int) $ligne['id_genre']
-            ),
-            $lignes
-        );
+            );
+        }
+
+        return $extraits;
     }
 
     // Retirer un extrait d'une série

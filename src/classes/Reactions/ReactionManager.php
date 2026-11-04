@@ -31,10 +31,14 @@ class ReactionManager implements ReactionManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(
-            fn($ligne) => $this->creerReaction($ligne),
-            $lignes
-        );
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerReaction($ligne);
+        }
+
+        return $resultats;
     }
 
     // Récupérer une réaction précise
@@ -53,8 +57,11 @@ class ReactionManager implements ReactionManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerReaction($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerReaction($ligne);
+        }
+
+        return null; }
 
     // Ajouter une réaction
     public function addReaction(Reaction $reaction): bool {

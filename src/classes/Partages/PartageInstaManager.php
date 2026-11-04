@@ -30,8 +30,14 @@ class PartageInstaManager implements PartageInstaManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerPartage($ligne), $lignes);
-    }
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerPartage($ligne);
+        }
+
+        return $resultats;    }
 
     // Les profils avec qui j'ai partagé mon Instagram
     public function getPartagesEnvoyes(int $idProfil): array {
@@ -43,8 +49,14 @@ class PartageInstaManager implements PartageInstaManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerPartage($ligne), $lignes);
-    }
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerPartage($ligne);
+        }
+
+        return $resultats;}
 
     // Est-ce que ce profil a déjà partagé son Instagram avec cet autre profil ?
     // (sert à savoir si on peut afficher le nom Instagram)

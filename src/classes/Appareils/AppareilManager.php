@@ -36,7 +36,14 @@ class AppareilManager implements AppareilManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerAppareil($ligne), $lignes);
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerAppareil($ligne);
+        }
+
+        return $resultats;
     }
 
     public function getAppareilById(int $id): ?Appareil {
@@ -48,8 +55,12 @@ class AppareilManager implements AppareilManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerAppareil($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerAppareil($ligne);
+        }
+
+        return null;
+        }
 
     // Retrouve l'appareil à partir du cookie de session (à chaque page protégée)
     public function getAppareilByJetonSessionHash(string $jetonSessionHash): ?Appareil {
@@ -61,7 +72,11 @@ class AppareilManager implements AppareilManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerAppareil($ligne) : null;
+        if ($ligne) {
+            return $this->creerAppareil($ligne);
+        }
+
+        return null;
     }
 
     public function addAppareil(Appareil $appareil): int {

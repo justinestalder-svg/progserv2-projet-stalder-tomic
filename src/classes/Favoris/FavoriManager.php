@@ -30,10 +30,14 @@ class FavoriManager implements FavoriManagerInterface {
 
         $lignes = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        return array_map(
-            fn($ligne) => $this->creerFavori($ligne),
-            $lignes
-        );
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerFavori($ligne);
+        }
+
+        return $resultats;
     }
 
     // Récupérer un favori précis
@@ -52,7 +56,11 @@ class FavoriManager implements FavoriManagerInterface {
 
         $ligne = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        return $ligne ? $this->creerFavori($ligne) : null;
+        if ($ligne) {
+            return $this->creerFavori($ligne);
+        }
+
+        return null;
     }
 
     // Récupérer les favoris d'un profil
@@ -67,10 +75,14 @@ class FavoriManager implements FavoriManagerInterface {
 
         $lignes = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        return array_map(
-            fn($ligne) => $this->creerFavori($ligne),
-            $lignes
-        );
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerFavori($ligne);
+        }
+
+        return $resultats;
     }
 
     // Ajouter un favori
