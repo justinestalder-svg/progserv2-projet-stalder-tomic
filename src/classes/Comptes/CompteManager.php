@@ -26,7 +26,7 @@ class CompteManager implements CompteManagerInterface {
             $donnees['bloque_jusqua'] !== null ? new \DateTime($donnees['bloque_jusqua']) : null
         );
     }
-
+    //j'ai remplacer la boucle par un foreach
     public function getComptes(): array {
         $sql = "SELECT * FROM compte";
 
@@ -35,7 +35,14 @@ class CompteManager implements CompteManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerCompte($ligne), $lignes);
+        $comptes = [];
+
+        foreach ($lignes as $ligne) {
+            $compte = $this->creerCompte($ligne);
+            $comptes[] = $compte;
+        }
+
+        return $comptes;
     }
 
     public function getCompteById(int $id): ?Compte {
@@ -46,8 +53,12 @@ class CompteManager implements CompteManagerInterface {
         $stmt->execute();
 
         $ligne = $stmt->fetch();
+        //j'ai changer aussi ici
+        if ($ligne) {
+            return $this->creerCompte($ligne);
+        }
 
-        return $ligne ? $this->creerCompte($ligne) : null;
+        return null;
     }
 
     public function getCompteByEmail(string $email): ?Compte {
