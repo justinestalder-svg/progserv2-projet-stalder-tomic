@@ -12,7 +12,14 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
     }
 
     // Transforme une ligne de la base (tableau) en objet JetonVerification
+    // Transforme une ligne de la base (tableau) en objet JetonVerification
     private function creerJeton(array $donnees): JetonVerification {
+        // date_utilisation est vide (null) tant que le jeton n'a pas été utilisé
+        $dateUtilisation = null;
+        if ($donnees['date_utilisation'] !== null) {
+            $dateUtilisation = new \DateTime($donnees['date_utilisation']);
+        }
+
         return new JetonVerification(
             $donnees['id_jeton'],
             $donnees['type'],
@@ -20,7 +27,7 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
             $donnees['email_cible'],
             new \DateTime($donnees['date_creation']),
             new \DateTime($donnees['date_expiration']),
-            $donnees['date_utilisation'] !== null ? new \DateTime($donnees['date_utilisation']) : null,
+            $dateUtilisation,
             $donnees['id_compte']
         );
     }
@@ -33,7 +40,14 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerJeton($ligne), $lignes);
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerJeton($ligne);
+        }
+
+        return $resultats;
     }
 
     public function getJetonById(int $id): ?JetonVerification {
@@ -45,7 +59,11 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerJeton($ligne) : null;
+        if ($ligne) {
+            return $this->creerJeton($ligne);
+        }
+
+        return null;
     }
 
     // Retrouve le jeton correspondant au lien sur lequel la personne a cliqué
@@ -58,7 +76,11 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerJeton($ligne) : null;
+        if ($ligne) {
+            return $this->creerJeton($ligne);
+        }
+
+        return null;
     }
 
     public function addJeton(JetonVerification $jeton): int {

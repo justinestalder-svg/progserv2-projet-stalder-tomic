@@ -27,8 +27,15 @@ class GenreMusicalManager implements GenreMusicalManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerGenreMusical($ligne), $lignes);
-    }
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerGenreMusical($ligne);
+        }
+
+        return $resultats;    
+        }
 
     // Récupérer un genre par son identifiant
     public function getGenreMusicalById(int $id): ?GenreMusical {
@@ -40,7 +47,11 @@ class GenreMusicalManager implements GenreMusicalManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerGenreMusical($ligne) : null;
+        if ($ligne) {
+            return $this->creerGenreMusical($ligne);
+        }
+
+        return null;
     }
 
     // Ajouter un genre musical

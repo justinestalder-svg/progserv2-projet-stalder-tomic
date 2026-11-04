@@ -11,8 +11,15 @@ class CompteManager implements CompteManagerInterface {
         $this->database = new Database();
     }
 
+    
     // Transforme une ligne de la base (tableau) en objet Compte
     private function creerCompte(array $donnees): Compte {
+        // bloque_jusqua peut être vide (null) dans la base
+        $bloqueJusqua = null;
+        if ($donnees['bloque_jusqua'] !== null) {
+            $bloqueJusqua = new \DateTime($donnees['bloque_jusqua']);
+        }
+
         return new Compte(
             $donnees['id_compte'],
             $donnees['pseudo'],
@@ -23,7 +30,7 @@ class CompteManager implements CompteManagerInterface {
             new \DateTime($donnees['date_inscription']),
             new \DateTime($donnees['date_acceptation_cgu']),
             $donnees['nb_echecs_connexion'],
-            $donnees['bloque_jusqua'] !== null ? new \DateTime($donnees['bloque_jusqua']) : null
+            $bloqueJusqua
         );
     }
     //j'ai remplacer la boucle par un foreach
@@ -69,8 +76,11 @@ class CompteManager implements CompteManagerInterface {
         $stmt->execute();
 
         $ligne = $stmt->fetch();
+        if ($ligne) {
+            return $this->creerCompte($ligne);
+        }
 
-        return $ligne ? $this->creerCompte($ligne) : null;
+        return null;
     }
 
     public function getCompteByPseudo(string $pseudo): ?Compte {
@@ -82,8 +92,12 @@ class CompteManager implements CompteManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerCompte($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerCompte($ligne);
+        }
+
+        return null;    
+        }
 
     public function addCompte(Compte $compte): int {
         $sql = "INSERT INTO compte (pseudo, email, mot_de_passe_hash, langue, email_confirme,

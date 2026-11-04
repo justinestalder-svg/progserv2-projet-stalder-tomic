@@ -101,8 +101,9 @@ class Profil {
 
     public function setVille(?string $ville): void {
         // La ville est facultative : une chaîne vide devient null
-        $ville = $ville !== null ? trim($ville) : null;
-
+        if ($ville !== null) {
+            $ville = trim($ville);
+        }
         if ($ville === '') {
             $ville = null;
         } else if ($ville !== null && strlen($ville) > 100) {

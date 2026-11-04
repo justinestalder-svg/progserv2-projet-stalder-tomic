@@ -32,10 +32,14 @@ class SessionEcouteManager implements SessionEcouteManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(
-            fn($ligne) => $this->creerSession($ligne),
-            $lignes
-        );
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerSession($ligne);
+        }
+
+        return $resultats;
     }
 
     // Récupérer une session par son identifiant
@@ -49,8 +53,12 @@ class SessionEcouteManager implements SessionEcouteManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerSession($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerSession($ligne);
+        }
+
+        return null;
+        }
 
     // Ajouter une session
     public function addSessionEcoute(SessionEcoute $session): int {

@@ -32,8 +32,14 @@ class ProfilManager implements ProfilManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerProfil($ligne), $lignes);
-    }
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerProfil($ligne);
+        }
+
+        return $resultats;    }
 
     public function getProfilById(int $id): ?Profil {
         $sql = "SELECT * FROM profil WHERE id_profil = :id";
@@ -44,8 +50,11 @@ class ProfilManager implements ProfilManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerProfil($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerProfil($ligne);
+        }
+
+        return null;    }
 
     // Retrouve le profil d'un compte (par exemple celui de la personne connectée)
     public function getProfilByCompteId(int $idCompte): ?Profil {
@@ -56,8 +65,11 @@ class ProfilManager implements ProfilManagerInterface {
         $stmt->execute();
 
         $ligne = $stmt->fetch();
+        if ($ligne) {
+            return $this->creerProfil($ligne);
+        }
 
-        return $ligne ? $this->creerProfil($ligne) : null;
+        return null;
     }
 
     public function addProfil(Profil $profil): int {

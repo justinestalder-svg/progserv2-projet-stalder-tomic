@@ -28,8 +28,12 @@ class IdeeDateManager implements IdeeDateManagerInterface {
         $stmt->execute([':id' => $idIdee]);
         $donnees = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $donnees ? $this->creerObjet($donnees) : null;
-    }
+        if ($donnees) {
+            return $this->creerObjet($donnees);
+        }
+
+        return null;
+        }
 
     public function getIdeesDateByGenre(int $idGenre): array {
         $stmt = $this->pdo->prepare(

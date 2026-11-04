@@ -76,7 +76,11 @@ class MatchDuo {
 
     // Depuis le profil de la personne connectée, renvoie l'id de l'autre personne du duo
     public function getIdAutreProfil(int $idProfil): int {
-        return $idProfil === $this->idProfil1 ? $this->idProfil2 : $this->idProfil1;
+        if ($idProfil === $this->idProfil1) {
+            return $this->idProfil2;
+        }
+
+        return $this->idProfil1;
     }
 
     // Le genre où le duo a le meilleur score (pour proposer une idée de date)
@@ -84,8 +88,18 @@ class MatchDuo {
         if (empty($this->scoresGenre)) {
             return null;
         }
+        // On parcourt les scores et on garde le genre qui a le plus grand score
+        $idMeilleurGenre = null;
+        $meilleurScore = -1;
 
-        return array_search(max($this->scoresGenre), $this->scoresGenre);
+        foreach ($this->scoresGenre as $idGenre => $score) {
+            if ($score > $meilleurScore) {
+                $meilleurScore = $score;
+                $idMeilleurGenre = $idGenre;
+            }
+        }
+
+        return $idMeilleurGenre;
     }
 
     // Setters, avec vérification des données

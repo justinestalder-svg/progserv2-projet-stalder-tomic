@@ -33,8 +33,15 @@ class ExtraitManager implements ExtraitManagerInterface {
 
         $lignes = $stmt->fetchAll();
 
-        return array_map(fn($ligne) => $this->creerExtrait($ligne), $lignes);
-    }
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerExtrait($ligne);
+        }
+
+        return $resultats;    
+        }
 
     // Récupérer un extrait par son identifiant
     public function getExtraitById(int $id): ?Extrait {
@@ -46,7 +53,11 @@ class ExtraitManager implements ExtraitManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerExtrait($ligne) : null;
+        if ($ligne) {
+            return $this->creerExtrait($ligne);
+        }
+
+        return null;
     }
 
     // Ajouter un extrait

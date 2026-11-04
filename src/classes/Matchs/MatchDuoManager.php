@@ -49,8 +49,14 @@ class MatchDuoManager implements MatchDuoManagerInterface {
         $stmt->execute();
 
         $lignes = $stmt->fetchAll();
+        $resultats = [];
 
-        return array_map(fn($ligne) => $this->creerMatch($ligne), $lignes);
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerMatch($ligne);
+        }
+
+        return $resultats;
     }
 
     public function getMatchById(int $id): ?MatchDuo {
@@ -62,8 +68,12 @@ class MatchDuoManager implements MatchDuoManagerInterface {
 
         $ligne = $stmt->fetch();
 
-        return $ligne ? $this->creerMatch($ligne) : null;
-    }
+        if ($ligne) {
+            return $this->creerMatch($ligne);
+        }
+
+        return null;    
+        }
 
     // Le match entre deux profils, peu importe l'ordre dans lequel on les donne
     public function getMatchByProfils(int $idProfilA, int $idProfilB): ?MatchDuo {
@@ -75,8 +85,11 @@ class MatchDuoManager implements MatchDuoManagerInterface {
         $stmt->execute();
 
         $ligne = $stmt->fetch();
+        if ($ligne) {
+            return $this->creerMatch($ligne);
+        }
 
-        return $ligne ? $this->creerMatch($ligne) : null;
+        return null;
     }
 
     // Enregistre le match et ses scores par genre.
