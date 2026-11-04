@@ -43,4 +43,11 @@ $genres = $genreManager->getGenresMusicaux();
     <?php } ?>
 </body>
 
+<?php if (!$cookiesAcceptes) { ?>
+    <p>
+        <?= $textes['cookies_message'] ?>
+        <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+    </p>
+<?php } ?>
+
 </html>

@@ -50,4 +50,8 @@ return [
     'profil_titre' => 'My profile',
     'profil_bonjour' => 'Hello',
     'profil_deconnexion' => 'Log out',
+
+    // Cookie banner
+    'cookies_message' => 'SoundMatch only uses necessary cookies: to remember your language and to keep you logged in.',
+    'cookies_ok' => 'OK',
 ];
