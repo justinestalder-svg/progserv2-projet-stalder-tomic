@@ -1,13 +1,13 @@
 <?php
 // On charge l'autoloader : il charge automatiquement toutes les classes dont on a besoin.
-// __DIR__ = src/public, donc /../utils/ = src/utils/
 require_once __DIR__ . '/../utils/autoloader.php';
+
+// On choisit la langue (cookie) et on charge les textes : avant le HTML
 require_once __DIR__ . '/../utils/langue.php';
 
 use Genres\GenreMusicalManager;
 
-// La page ne fait plus de SQL elle-même : elle demande les genres au manager.
-// getGenresMusicaux() renvoie un tableau d'objets GenreMusical, triés par libellé.
+// La page ne fait pas de SQL elle-même : elle demande les genres au manager.
 $genreManager = new GenreMusicalManager();
 $genres = $genreManager->getGenresMusicaux();
 ?>
@@ -23,21 +23,16 @@ $genres = $genreManager->getGenresMusicaux();
 
 <body>
     <p>
-        <a href="?langue=fr">Français</a> | <a href="?langue=en">English</a>
+        <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
     </p>
 
     <h1>SoundMatch</h1>
+    <p><?= $textes['accueil_description'] ?></p>
 
-    <?php if ($langue === 'fr') { ?>
-        <p>Projet réalisé dans le cadre du cours ProgServ2 à la HEIG-VD.</p>
-        <h2>Genres musicaux</h2>
-    <?php } else { ?>
-        <p>Project made for the ProgServ2 course at HEIG-VD.</p>
-        <h2>Music genres</h2>
-    <?php } ?>
-    
+    <h2><?= $textes['accueil_genres'] ?></h2>
+
     <?php if (empty($genres)) { ?>
-        <p>Aucun genre dans la base de données.</p>
+        <p><?= $textes['accueil_aucun_genre'] ?></p>
     <?php } else { ?>
         <ul>
             <?php foreach ($genres as $genre) { ?>
