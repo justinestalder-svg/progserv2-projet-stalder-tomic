@@ -2,34 +2,38 @@
 
 require_once __DIR__ . '/../utils/autoloader.php';
 
+use Comptes\Compte;
+use Comptes\CompteManager;
+use Profils\Profil;
+use Profils\ProfilManager;
 use Sessions\SessionEcoute;
 use Sessions\SessionEcouteManager;
 use Series\Serie;
 use Series\SerieManager;
 
+$compteManager = new CompteManager();
+$profilManager = new ProfilManager();
 $sessionManager = new SessionEcouteManager();
 $serieManager = new SerieManager();
 
+$idCompte = null;
+$idProfil = null;
 $idSerie = null;
 $idSession = null;
 
-// À remplacer par l'identifiant d'un profil de test existant
-$idProfil = 1;
-
 try {
-    // Vérifier que le profil de test existe
-    $pdo = (new Database())->getPdo();
+    // 0. Une session appartient à un profil : on crée un compte et un profil de test
+    //    (au lieu d'utiliser un id écrit en dur, qui peut ne plus exister)
+    $idCompte = $compteManager->addCompte(new Compte(
+        null, 'test_session', 'test.session@example.com',
+        password_hash('motdepasse123', PASSWORD_DEFAULT), 'fr', false,
+        new DateTime(), new DateTime()
+    ));
 
-    $stmt = $pdo->prepare(
-        "SELECT id_profil FROM profil WHERE id_profil = :id"
-    );
-    $stmt->execute([':id' => $idProfil]);
-
-    if (!$stmt->fetch()) {
-        throw new Exception(
-            "Le profil de test n'existe pas. Vérifie idProfil."
-        );
-    }
+    $idProfil = $profilManager->addProfil(new Profil(
+        null, 'femme', new DateTime('2002-03-01'), 'uploads/test.jpg',
+        'test.session', null, $idCompte
+    ));
 
     // 1. Créer une série temporaire
     $serie = new Serie(null, 'Serie Test Session');
@@ -113,5 +117,14 @@ try {
 
     if ($idSerie !== null) {
         $serieManager->removeSerie($idSerie);
+    }
+
+    // On supprime d'abord le profil (il dépend du compte), puis le compte
+    if ($idProfil !== null) {
+        $profilManager->removeProfil($idProfil);
+    }
+
+    if ($idCompte !== null) {
+        $compteManager->removeCompte($idCompte);
     }
 }
