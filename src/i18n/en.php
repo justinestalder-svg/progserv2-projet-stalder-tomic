@@ -12,7 +12,6 @@ return [
 
     // Sign-up page
     'inscription_titre' => 'Create your account',
-    'inscription_succes' => 'Your account has been created! You can now log in.',
     'inscription_pseudo' => 'Username',
     'inscription_email' => 'Email address',
     'inscription_mot_de_passe' => 'Password',
@@ -36,7 +35,6 @@ return [
 
     // Log-in page
     'connexion_titre' => 'Log in',
-    'connexion_succes' => 'Login successful! Hello',
     'connexion_identifiant' => 'Email address or username',
     'connexion_mot_de_passe' => 'Password',
     'connexion_bouton' => 'Log in',
@@ -47,4 +45,9 @@ return [
     'erreur_champs_vides' => 'Enter your email address (or username) and your password.',
     'erreur_bloque' => 'Too many attempts. Try again after',
     'erreur_connexion' => 'Incorrect email address, username or password.',
+
+    // Profile page
+    'profil_titre' => 'My profile',
+    'profil_bonjour' => 'Hello',
+    'profil_deconnexion' => 'Log out',
 ];
