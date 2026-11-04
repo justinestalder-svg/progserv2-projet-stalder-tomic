@@ -2,6 +2,7 @@
 // On charge l'autoloader : il charge automatiquement toutes les classes dont on a besoin.
 // __DIR__ = src/public, donc /../utils/ = src/utils/
 require_once __DIR__ . '/../utils/autoloader.php';
+require_once __DIR__ . '/../utils/langue.php';
 
 use Genres\GenreMusicalManager;
 
@@ -12,7 +13,7 @@ $genres = $genreManager->getGenresMusicaux();
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= $langue ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -21,11 +22,20 @@ $genres = $genreManager->getGenresMusicaux();
 </head>
 
 <body>
+    <p>
+        <a href="?langue=fr">Français</a> | <a href="?langue=en">English</a>
+    </p>
+
     <h1>SoundMatch</h1>
-    <p>Projet réalisé dans le cadre du cours ProgServ2 à la HEIG-VD.</p>
 
-    <h2>Genres musicaux</h2>
-
+    <?php if ($langue === 'fr') { ?>
+        <p>Projet réalisé dans le cadre du cours ProgServ2 à la HEIG-VD.</p>
+        <h2>Genres musicaux</h2>
+    <?php } else { ?>
+        <p>Project made for the ProgServ2 course at HEIG-VD.</p>
+        <h2>Music genres</h2>
+    <?php } ?>
+    
     <?php if (empty($genres)) { ?>
         <p>Aucun genre dans la base de données.</p>
     <?php } else { ?>
