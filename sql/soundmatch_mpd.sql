@@ -211,3 +211,7 @@ select * from profil;
 UPDATE profil
 SET id_profil = 1
 WHERE id_profil = 2;
+
+select* from favori;
+select * from extrait;
+
