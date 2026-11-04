@@ -14,3 +14,4 @@ Thumbs.db
 [Dd]esktop.ini
 # Fichier de configuration avec les identifiants (ne jamais envoyer sur GitHub)
 src/config/database.ini
+*.zip
