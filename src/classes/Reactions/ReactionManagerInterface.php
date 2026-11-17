@@ -13,6 +13,12 @@ interface ReactionManagerInterface {
         int $idExtrait
     ): ?Reaction;
 
+    // Toutes les réactions d'une session
+    public function getReactionsBySession(int $idSession): array;
+
+    // Supprimer toutes les réactions d'une session
+    public function removeReactionsBySession(int $idSession): bool;
+    
     // Ajouter une réaction
     public function addReaction(Reaction $reaction): bool;
 

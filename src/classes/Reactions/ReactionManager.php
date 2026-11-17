@@ -62,7 +62,35 @@ class ReactionManager implements ReactionManagerInterface {
         }
 
         return null; }
+    // Toutes les réactions d'une session
+    public function getReactionsBySession(int $idSession): array {
+        $sql = "SELECT * FROM reaction WHERE id_session = :id_session";
 
+        $stmt = $this->database->getPdo()->prepare($sql);
+        $stmt->bindValue(':id_session', $idSession, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        $lignes = $stmt->fetchAll();
+
+        $resultats = [];
+
+        // On transforme chaque ligne de la base en objet
+        foreach ($lignes as $ligne) {
+            $resultats[] = $this->creerReaction($ligne);
+        }
+
+        return $resultats;
+    }
+
+    // Supprimer toutes les réactions d'une session (quand on quitte la session)
+    public function removeReactionsBySession(int $idSession): bool {
+        $sql = "DELETE FROM reaction WHERE id_session = :id_session";
+
+        $stmt = $this->database->getPdo()->prepare($sql);
+        $stmt->bindValue(':id_session', $idSession, \PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
     // Ajouter une réaction
     public function addReaction(Reaction $reaction): bool {
         $sql = "INSERT INTO reaction
