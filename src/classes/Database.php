@@ -18,7 +18,14 @@ class Database {
         $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['dbname']};charset=utf8mb4";
 
         // 3. Créer la connexion.
-        $this->pdo = new PDO($dsn, $config['username'], $config['password']);
+        // On essaie de se connecter. Si ça échoue, on affiche un message simple :
+        // le vrai message d'erreur contient le nom du serveur et de l'utilisateur,
+        // il ne doit jamais être montré aux visiteurs.
+        try {
+            $this->pdo = new PDO($dsn, $config['username'], $config['password']);
+        } catch (PDOException $e) {
+            die("Erreur de connexion à la base de données. Réessaie plus tard.");
+        }
 
         // 4. fetch() et fetchAll() renverront des tableaux associatifs
         // (['libelle' => 'Pop']) au lieu de doublons avec des index numériques.

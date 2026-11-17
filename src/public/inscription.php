@@ -1,4 +1,10 @@
 <?php
+// Cookie de session protégé : le JavaScript ne peut pas le lire (httponly)
+// et il n'est pas envoyé par les autres sites (samesite)
+session_set_cookie_params([
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
 // On démarre la session (avant tout HTML)
 session_start();
 
