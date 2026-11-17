@@ -54,4 +54,31 @@ return [
     // Bandeau cookies
     'cookies_message' => 'SoundMatch utilise uniquement des cookies nécessaires : pour se souvenir de ta langue et pour garder ta connexion.',
     'cookies_ok' => 'OK',
+
+    // Menu des pages connectées
+    'menu_concept' => 'Le concept',
+    'menu_comment' => 'Comment ça marche ?',
+    'menu_matchs' => 'Mes matchs',
+    'menu_favoris' => 'Mes favoris',
+    'menu_reglages' => 'Réglages',
+    'menu_deconnexion' => 'Se déconnecter',
+
+    // Page d'accueil
+    'accueil_accroche' => 'Ta prochaine date commence par une chanson.',
+    'accueil_texte' => "Sur SoundMatch, on ne choisit pas les gens sur leur photo : on découvre des personnes qui ont les mêmes goûts musicaux que soi, pour une rencontre amicale ou amoureuse.",
+    'accueil_commencer' => 'Commencer à matcher →',
+    'accueil_creer_compte' => 'Créer un compte',
+    'accueil_se_connecter' => 'Se connecter',
+    'accueil_meilleurs_matchs' => 'Tes meilleurs matchs',
+    'accueil_aucun_match' => "Tu n'as pas encore de match. Fais une session d'écoute pour découvrir les personnes qui ont les mêmes goûts que toi.",
+    'accueil_voir_matchs' => 'Voir tous mes matchs →',
+    'accueil_ans' => 'ans',
+    'concept_ecoute_titre' => 'Écoute',
+    'concept_ecoute_texte' => '20 extraits de 30 secondes, de 4 genres différents.',
+    'concept_choisis_titre' => 'Choisis',
+    'concept_choisis_texte' => "« J'aime » ou « J'ignore », pas besoin d'écouter jusqu'au bout.",
+    'concept_match_titre' => 'Match',
+    'concept_match_texte' => 'Découvre les personnes qui ont les mêmes goûts que toi.',
+    'comment_texte' => "Pour chaque genre, on compare ce que vous aimez et ce que vous n'aimez pas. La compatibilité est la moyenne des 4 genres : plus elle est haute, plus vos goûts se ressemblent.",
+    'comment_exemple' => 'Exemple : Toi et Léa, 86 % de compatibilité.',
 ];

@@ -54,4 +54,31 @@ return [
     // Cookie banner
     'cookies_message' => 'SoundMatch only uses necessary cookies: to remember your language and to keep you logged in.',
     'cookies_ok' => 'OK',
+
+    // Menu of the logged-in pages
+    'menu_concept' => 'The concept',
+    'menu_comment' => 'How does it work?',
+    'menu_matchs' => 'My matches',
+    'menu_favoris' => 'My favourites',
+    'menu_reglages' => 'Settings',
+    'menu_deconnexion' => 'Log out',
+
+    // Home page
+    'accueil_accroche' => 'Your next date starts with a song.',
+    'accueil_texte' => "On SoundMatch, you don't choose people by their photo: you discover people who share your music taste, for friendship or love.",
+    'accueil_commencer' => 'Start matching →',
+    'accueil_creer_compte' => 'Create an account',
+    'accueil_se_connecter' => 'Log in',
+    'accueil_meilleurs_matchs' => 'Your best matches',
+    'accueil_aucun_match' => "You don't have any match yet. Do a listening session to discover people who share your taste.",
+    'accueil_voir_matchs' => 'See all my matches →',
+    'accueil_ans' => 'years old',
+    'concept_ecoute_titre' => 'Listen',
+    'concept_ecoute_texte' => '20 clips of 30 seconds, from 4 different genres.',
+    'concept_choisis_titre' => 'Choose',
+    'concept_choisis_texte' => '"I like" or "Skip", no need to listen until the end.',
+    'concept_match_titre' => 'Match',
+    'concept_match_texte' => 'Discover the people who share your taste.',
+    'comment_texte' => "For each genre, we compare what you both like and don't like. The compatibility is the average of the 4 genres: the higher it is, the more alike your tastes are.",
+    'comment_exemple' => 'Example: You and Léa, 86% compatible.',
 ];
