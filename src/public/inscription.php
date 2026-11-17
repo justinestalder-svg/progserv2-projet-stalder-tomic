@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cguAcceptees = isset($_POST['cgu']);
 
     // 1. Vérification des champs
-    if (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
+    // 3 à 20 caractères : lettres, chiffres, point ou tiret bas
+    if (!preg_match('/^[A-Za-z0-9._]{3,20}$/', $pseudo)) {
         $erreurs['pseudo'] = $textes['erreur_pseudo'];
     }
 
