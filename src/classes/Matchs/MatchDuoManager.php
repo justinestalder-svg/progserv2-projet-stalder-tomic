@@ -42,7 +42,7 @@ class MatchDuoManager implements MatchDuoManagerInterface {
     public function getMatchsByProfilId(int $idProfil): array {
         $sql = "SELECT * FROM matchs
                 WHERE id_profil_1 = :id_profil OR id_profil_2 = :id_profil
-                ORDER BY score_global DESC";
+                ORDER BY score_global DESC, nb_sons_communs DESC";
 
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->bindValue(':id_profil', $idProfil);

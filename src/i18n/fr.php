@@ -158,4 +158,22 @@ return [
     'session_nouvelle' => 'Nouvelle session →',
     'session_voir_matchs' => 'Voir mes matchs →',
     'session_aucune_serie' => "Il n'y a pas encore de musiques. Reviens bientôt !",
+
+    // Mes matchs
+    'matchs_titre' => 'Les profils qui te correspondent le mieux',
+    'matchs_filtre_tous' => 'Tous',
+    'matchs_filtre_recus' => "Ils m'ont partagé leur insta",
+    'matchs_filtre_echanges' => 'Insta échangé',
+    'matchs_aucun_filtre' => 'Aucun match pour ce filtre.',
+    'matchs_compatibilite' => 'de compatibilité',
+    'matchs_sons_communs' => 'sons aimés en commun',
+    'matchs_etat_aucun' => 'Aucun partage',
+    'matchs_etat_recu' => "T'a partagé son insta",
+    'matchs_etat_attente' => 'En attente de sa réponse',
+    'matchs_etat_echange' => 'Échange complet ✓',
+    'matchs_toi' => 'toi',
+    'matchs_pas_partage' => 'Pas encore partagé',
+    'matchs_partager' => '+ Partager le mien',
+    'matchs_partage_ok' => 'Partagé ✓',
+    'matchs_details' => 'Compatibilité et idées de date →',
 ];

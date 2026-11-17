@@ -19,6 +19,7 @@ use Reactions\ReactionManager;
 use Favoris\Favori;
 use Favoris\FavoriManager;
 use Genres\GenreMusicalManager;
+use Matchs\CalculMatch;
 
 // Page privée : si personne n'est connecté, on renvoie vers la connexion
 if (!isset($_SESSION['id_compte'])) {
@@ -105,6 +106,9 @@ if (!isset($_GET['fin'])) {
                 if ($position + 1 === count($extraits)) {
                     $sessionTerminee = new SessionEcoute($session->getId(), $session->getDateDebut(), 'terminee', $session->getIdProfil(), $session->getIdSerie());
                     $sessionManager->updateSessionEcoute($sessionTerminee);
+                    // On recalcule les matchs avec les nouvelles réponses
+                    $calculMatch = new CalculMatch();
+                    $calculMatch->mettreAJourMatchs($profil->getId());
 
                     header('Location: session.php?fin=' . $session->getId());
                     exit();

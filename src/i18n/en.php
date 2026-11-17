@@ -158,4 +158,22 @@ return [
     'session_nouvelle' => 'New session →',
     'session_voir_matchs' => 'See my matches →',
     'session_aucune_serie' => "There's no music yet. Come back soon!",
+
+    // My matches
+    'matchs_titre' => 'The profiles that match you best',
+    'matchs_filtre_tous' => 'All',
+    'matchs_filtre_recus' => 'They shared their insta',
+    'matchs_filtre_echanges' => 'Insta exchanged',
+    'matchs_aucun_filtre' => 'No match for this filter.',
+    'matchs_compatibilite' => 'compatible',
+    'matchs_sons_communs' => 'songs liked in common',
+    'matchs_etat_aucun' => 'Nothing shared',
+    'matchs_etat_recu' => 'Shared their insta with you',
+    'matchs_etat_attente' => 'Waiting for their answer',
+    'matchs_etat_echange' => 'Full exchange ✓',
+    'matchs_toi' => 'you',
+    'matchs_pas_partage' => 'Not shared yet',
+    'matchs_partager' => '+ Share mine',
+    'matchs_partage_ok' => 'Shared ✓',
+    'matchs_details' => 'Compatibility and date ideas →',
 ];
