@@ -1,5 +1,13 @@
 <?php
+// Cookie de session protégé : le JavaScript ne peut pas le lire (httponly)
+// et il n'est pas envoyé par les autres sites (samesite)
+session_set_cookie_params([
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
 session_start();
+require_once __DIR__ . '/../utils/autoloader.php';
+require_once __DIR__ . '/../utils/langue.php';
 require_once __DIR__ . '/../utils/autoloader.php';
 require_once __DIR__ . '/../utils/langue.php';
 
