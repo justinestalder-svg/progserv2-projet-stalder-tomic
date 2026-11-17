@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['pseudo'] = $pseudo;
 
         // On l'envoie sur sa page privée
-        header('Location: profil.php');
+        header('Location: index.php');
         exit();
     }
 }
