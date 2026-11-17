@@ -10,6 +10,9 @@ interface SessionEcouteManagerInterface {
     // Récupérer une session par son identifiant
     public function getSessionEcouteById(int $id): ?SessionEcoute;
 
+    // La session « en cours » d'un profil
+    public function getSessionEnCoursByProfil(int $idProfil): ?SessionEcoute;
+
     // Ajouter une session
     public function addSessionEcoute(SessionEcoute $session): int;
 

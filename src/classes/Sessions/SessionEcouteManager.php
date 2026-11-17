@@ -59,7 +59,23 @@ class SessionEcouteManager implements SessionEcouteManagerInterface {
 
         return null;
         }
+    // La session « en cours » d'un profil (null s'il n'y en a pas)
+    public function getSessionEnCoursByProfil(int $idProfil): ?SessionEcoute {
+        $sql = "SELECT * FROM session_ecoute
+                WHERE id_profil = :id_profil AND statut = 'en_cours'";
 
+        $stmt = $this->database->getPdo()->prepare($sql);
+        $stmt->bindValue(':id_profil', $idProfil, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        $ligne = $stmt->fetch();
+
+        if ($ligne) {
+            return $this->creerSession($ligne);
+        }
+
+        return null;
+    }
     // Ajouter une session
     public function addSessionEcoute(SessionEcoute $session): int {
         $sql = "INSERT INTO session_ecoute
