@@ -28,6 +28,11 @@ if ($estConnecte) {
     // On cherche le profil de la personne connectée
     // (il n'existe pas encore si elle n'a pas répondu aux questions du premier lancement)
     $monProfil = $profilManager->getProfilByCompteId($_SESSION['id_compte']);
+    // Pas encore de profil : il faut d'abord répondre aux questions
+    if ($monProfil === null) {
+        header('Location: creer-profil.php');
+        exit();
+    }
 
     if ($monProfil !== null) {
         // Les matchs sont déjà triés du plus compatible au moins compatible
