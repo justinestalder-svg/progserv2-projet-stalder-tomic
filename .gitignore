@@ -15,3 +15,6 @@ Thumbs.db
 # Fichier de configuration avec les identifiants (ne jamais envoyer sur GitHub)
 src/config/database.ini
 *.zip
+
+# Photos envoyées par les utilisateurs (données personnelles, pas sur GitHub)
+src/public/uploads/
