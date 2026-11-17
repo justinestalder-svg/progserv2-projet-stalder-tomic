@@ -26,7 +26,7 @@ return [
     'inscription_lien_connexion' => 'Log in',
 
     // Sign-up errors
-    'erreur_pseudo' => 'The username must be between 3 and 20 characters.',
+    'erreur_pseudo' => '3 to 20 characters: letters, numbers, dot or underscore.',
     'erreur_email' => 'The email address is not valid.',
     'erreur_mot_de_passe' => 'The password does not follow all the rules.',
     'erreur_cgu' => 'You must accept the terms and conditions.',
@@ -101,4 +101,24 @@ return [
     'erreur_photo_taille' => 'The picture is too big (5 MB maximum).',
     'erreur_photo_format' => 'The picture must be a JPG or PNG image.',
     'erreur_instagram' => '2 to 30 characters: letters, numbers, dot or underscore.',
+
+    // Settings
+    'reglages_titre' => 'Settings',
+    'reglages_retour' => '← Back to home',
+    'reglages_succes' => 'Changes saved ✓',
+    'reglages_mon_profil' => 'My profile',
+    'reglages_instagram' => 'Instagram',
+    'reglages_compte' => 'Account and security',
+    'reglages_supprimer' => 'Delete my account',
+    'reglages_photo' => 'My profile picture',
+    'reglages_changer_photo' => 'Change the picture',
+    'reglages_photo_aide' => 'The picture is required: you can change it, but not remove it.',
+    'reglages_enregistrer' => 'Save',
+    'reglages_partage_avec' => 'Shared with',
+    'reglages_aucun_partage' => "You haven't shared your Instagram with anyone.",
+    'reglages_ne_plus_partager' => 'Stop sharing',
+    'reglages_email_bientot' => 'Changing your email address is coming soon (a confirmation email must be sent first).',
+    'reglages_modifier_mdp' => 'Change the password',
+    'reglages_appareils' => 'Manage my devices',
+    'reglages_supprimer_texte' => 'Warning: deleting your account is permanent.',
 ];

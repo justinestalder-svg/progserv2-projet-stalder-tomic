@@ -26,7 +26,7 @@ return [
     'inscription_lien_connexion' => 'Se connecter',
 
     // Erreurs de l'inscription
-    'erreur_pseudo' => 'Le pseudo doit contenir entre 3 et 20 caractères.',
+    'erreur_pseudo' => '3 à 20 caractères : lettres, chiffres, point ou tiret bas.',
     'erreur_email' => "L'adresse e-mail n'est pas valide.",
     'erreur_mot_de_passe' => 'Le mot de passe ne respecte pas toutes les règles.',
     'erreur_cgu' => 'Tu dois accepter les termes et conditions.',
@@ -101,4 +101,24 @@ return [
     'erreur_photo_taille' => 'La photo est trop lourde (5 Mo maximum).',
     'erreur_photo_format' => 'La photo doit être une image JPG ou PNG.',
     'erreur_instagram' => "2 à 30 caractères : lettres, chiffres, point ou tiret bas.",
+
+    // Réglages
+    'reglages_titre' => 'Réglages',
+    'reglages_retour' => "← Retour à l'accueil",
+    'reglages_succes' => 'Modifications enregistrées ✓',
+    'reglages_mon_profil' => 'Mon profil',
+    'reglages_instagram' => 'Instagram',
+    'reglages_compte' => 'Compte et sécurité',
+    'reglages_supprimer' => 'Supprimer mon compte',
+    'reglages_photo' => 'Ma photo de profil',
+    'reglages_changer_photo' => 'Changer la photo',
+    'reglages_photo_aide' => "La photo est obligatoire : tu peux la changer, mais pas la retirer.",
+    'reglages_enregistrer' => 'Enregistrer',
+    'reglages_partage_avec' => 'Partagé avec',
+    'reglages_aucun_partage' => "Tu n'as partagé ton insta avec personne.",
+    'reglages_ne_plus_partager' => 'Ne plus partager',
+    'reglages_email_bientot' => "Le changement d'adresse mail arrivera bientôt (il faut d'abord envoyer un mail de confirmation).",
+    'reglages_modifier_mdp' => 'Modifier le mot de passe',
+    'reglages_appareils' => 'Gérer mes appareils',
+    'reglages_supprimer_texte' => 'Attention : la suppression de ton compte est définitive.',
 ];
