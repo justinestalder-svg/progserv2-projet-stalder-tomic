@@ -121,4 +121,19 @@ return [
     'reglages_modifier_mdp' => 'Change the password',
     'reglages_appareils' => 'Manage my devices',
     'reglages_supprimer_texte' => 'Warning: deleting your account is permanent.',
+
+    // Change the password
+    'mdp_titre' => 'Change the password',
+    'mdp_retour' => '← Back to settings',
+    'mdp_actuel' => '1. Current password',
+    'mdp_oublie_lien' => "Can't remember it?",
+    'mdp_nouveau' => '2. New password',
+    'mdp_regle_different' => 'Different from the current password',
+    'mdp_confirmation' => '3. Type the new password again',
+    'mdp_annuler' => 'Cancel',
+    'mdp_bouton' => 'Save the password',
+    'mdp_succes' => 'Password changed. Your new password is saved.',
+    'erreur_mdp_actuel' => 'Incorrect current password.',
+    'erreur_mdp_identique' => 'The new password must be different from the current one.',
+    'erreur_mdp_confirmation' => 'The two passwords are not the same.',
 ];

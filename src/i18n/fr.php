@@ -121,4 +121,19 @@ return [
     'reglages_modifier_mdp' => 'Modifier le mot de passe',
     'reglages_appareils' => 'Gérer mes appareils',
     'reglages_supprimer_texte' => 'Attention : la suppression de ton compte est définitive.',
+
+    // Modifier le mot de passe
+    'mdp_titre' => 'Modifier le mot de passe',
+    'mdp_retour' => '← Retour aux réglages',
+    'mdp_actuel' => '1. Mot de passe actuel',
+    'mdp_oublie_lien' => "Tu ne t'en souviens plus ?",
+    'mdp_nouveau' => '2. Nouveau mot de passe',
+    'mdp_regle_different' => 'Différent du mot de passe actuel',
+    'mdp_confirmation' => '3. Écris encore une fois le nouveau mot de passe',
+    'mdp_annuler' => 'Annuler',
+    'mdp_bouton' => 'Enregistrer le mot de passe',
+    'mdp_succes' => 'Mot de passe modifié. Ton nouveau mot de passe est enregistré.',
+    'erreur_mdp_actuel' => 'Mot de passe actuel incorrect.',
+    'erreur_mdp_identique' => 'Le nouveau mot de passe doit être différent du mot de passe actuel.',
+    'erreur_mdp_confirmation' => 'Les deux mots de passe ne sont pas identiques.',
 ];
