@@ -99,7 +99,10 @@ class ReactionManager implements ReactionManagerInterface {
                     (:id_session, :id_extrait, :choix, :date_reaction)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $reaction);
+        $stmt->bindValue(':id_session', $reaction->getIdSession(), \PDO::PARAM_INT);
+        $stmt->bindValue(':id_extrait', $reaction->getIdExtrait(), \PDO::PARAM_INT);
+        $stmt->bindValue(':choix', $reaction->getChoix());
+        $stmt->bindValue(':date_reaction', $reaction->getDateReaction()->format('Y-m-d H:i:s'));
 
         return $stmt->execute();
     }
@@ -113,7 +116,10 @@ class ReactionManager implements ReactionManagerInterface {
                 AND id_extrait = :id_extrait";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $reaction);
+        $stmt->bindValue(':id_session', $reaction->getIdSession(), \PDO::PARAM_INT);
+        $stmt->bindValue(':id_extrait', $reaction->getIdExtrait(), \PDO::PARAM_INT);
+        $stmt->bindValue(':choix', $reaction->getChoix());
+        $stmt->bindValue(':date_reaction', $reaction->getDateReaction()->format('Y-m-d H:i:s'));
 
         return $stmt->execute();
     }
@@ -132,33 +138,5 @@ class ReactionManager implements ReactionManagerInterface {
         $stmt->bindValue(':id_extrait', $idExtrait, \PDO::PARAM_INT);
 
         return $stmt->execute();
-    }
-
-    // Associe les attributs PHP aux paramètres SQL
-    private function lierValeurs(
-        \PDOStatement $stmt,
-        Reaction $reaction
-    ): void {
-        $stmt->bindValue(
-            ':id_session',
-            $reaction->getIdSession(),
-            \PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':id_extrait',
-            $reaction->getIdExtrait(),
-            \PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':choix',
-            $reaction->getChoix()
-        );
-
-        $stmt->bindValue(
-            ':date_reaction',
-            $reaction->getDateReaction()->format('Y-m-d H:i:s')
-        );
     }
 }

@@ -86,7 +86,14 @@ class AppareilManager implements AppareilManagerInterface {
                     :date_connexion, :date_expiration, :jeton_session_hash, :id_compte)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $appareil);
+        $stmt->bindValue(':nom_appareil', $appareil->getNomAppareil());
+        $stmt->bindValue(':navigateur', $appareil->getNavigateur());
+        $stmt->bindValue(':ville_connexion', $appareil->getVilleConnexion());
+        $stmt->bindValue(':derniere_activite', $appareil->getDerniereActivite()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_connexion', $appareil->getDateConnexion()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_expiration', $appareil->getDateExpiration()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':jeton_session_hash', $appareil->getJetonSessionHash());
+        $stmt->bindValue(':id_compte', $appareil->getIdCompte(), \PDO::PARAM_INT);
         $stmt->execute();
 
         // Identifiant de l'appareil qui vient d'être enregistré
@@ -101,7 +108,14 @@ class AppareilManager implements AppareilManagerInterface {
                 WHERE id_appareil = :id";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $appareil);
+        $stmt->bindValue(':nom_appareil', $appareil->getNomAppareil());
+        $stmt->bindValue(':navigateur', $appareil->getNavigateur());
+        $stmt->bindValue(':ville_connexion', $appareil->getVilleConnexion());
+        $stmt->bindValue(':derniere_activite', $appareil->getDerniereActivite()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_connexion', $appareil->getDateConnexion()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_expiration', $appareil->getDateExpiration()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':jeton_session_hash', $appareil->getJetonSessionHash());
+        $stmt->bindValue(':id_compte', $appareil->getIdCompte(), \PDO::PARAM_INT);
         $stmt->bindValue(':id', $appareil->getId());
 
         return $stmt->execute();
@@ -126,17 +140,5 @@ class AppareilManager implements AppareilManagerInterface {
         $stmt->bindValue(':id_appareil', $idAppareilActuel);
 
         return $stmt->execute();
-    }
-
-    // Lie les attributs de l'appareil aux paramètres de la requête (utilisé par add et update)
-    private function lierValeurs(\PDOStatement $stmt, Appareil $appareil): void {
-        $stmt->bindValue(':nom_appareil', $appareil->getNomAppareil());
-        $stmt->bindValue(':navigateur', $appareil->getNavigateur());
-        $stmt->bindValue(':ville_connexion', $appareil->getVilleConnexion());
-        $stmt->bindValue(':derniere_activite', $appareil->getDerniereActivite()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':date_connexion', $appareil->getDateConnexion()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':date_expiration', $appareil->getDateExpiration()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':jeton_session_hash', $appareil->getJetonSessionHash());
-        $stmt->bindValue(':id_compte', $appareil->getIdCompte(), \PDO::PARAM_INT);
     }
 }
