@@ -89,8 +89,9 @@ class Profil {
 
     public function setNomInstagram(string $nomInstagram): void {
         // On accepte "@pseudo" comme "pseudo", et on enregistre sans le @
-        $nomInstagram = ltrim(trim($nomInstagram), '@');
-
+        $nomInstagram = trim($nomInstagram);
+        $nomInstagram = ltrim($nomInstagram, '@');
+        
         // Règles d'Instagram : 1 à 30 caractères, lettres, chiffres, points et underscores
         if (!preg_match('/^[A-Za-z0-9._]{1,30}$/', $nomInstagram)) {
             throw new \InvalidArgumentException("Le nom Instagram n'est pas valide.");

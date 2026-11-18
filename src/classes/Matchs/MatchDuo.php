@@ -124,7 +124,7 @@ class MatchDuo {
     }
 
     public function setTitreDuo(?string $titreDuo): void {
-        if ($titreDuo !== null && mb_strlen($titreDuo) > 100) {
+        if ($titreDuo !== null && strlen($titreDuo) > 100) {
             throw new \InvalidArgumentException("Le titre du duo ne doit pas dépasser 100 caractères.");
         }
 

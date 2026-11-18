@@ -34,7 +34,9 @@ class CalculMatch {
         $reponses = [];
 
         // Les lignes sont triées par date : une réponse plus récente remplace l'ancienne
-        foreach ($stmt->fetchAll() as $ligne) {
+        $lignes = $stmt->fetchAll();
+
+        foreach ($lignes as $ligne) {
             $reponses[(int) $ligne['id_extrait']] = [
                 'choix' => $ligne['choix'],
                 'id_genre' => (int) $ligne['id_genre'],
@@ -59,7 +61,7 @@ class CalculMatch {
         return $ids;
     }
 
-    // Le taux d'appréciation par genre : [id du genre => nombre de J'aime ÷ nombre d'extraits écoutés]
+    // Le taux par genre : nombre de J'aime / nombre d'extraits écoutés
     private function calculerTaux(array $reponses): array {
         $ecoutes = [];
         $aimes = [];
@@ -106,11 +108,12 @@ class CalculMatch {
             $autresReponses = $this->getReponses($idAutreProfil);
             $autresTaux = $this->calculerTaux($autresReponses);
 
-            // 1. Score de chaque genre : 100 − (écart entre les deux taux × 100)
-            $scoresGenre = [];
+            // 1. Score de chaque genre : 100 - (écart entre les deux taux x 100)
             foreach ($mesTaux as $idGenre => $taux) {
                 if (isset($autresTaux[$idGenre])) {
-                    $scoresGenre[$idGenre] = (int) round(100 - abs($taux - $autresTaux[$idGenre]) * 100);
+                    $ecart = abs($taux - $autresTaux[$idGenre]);
+                    $score = 100 - $ecart * 100;
+                    $scoresGenre[$idGenre] = (int) round($score);
                 }
             }
 
@@ -128,12 +131,10 @@ class CalculMatch {
             // 3. Sons aimés en commun : extraits que les deux ont aimés
             $nbSonsCommuns = 0;
             foreach ($mesReponses as $idExtrait => $reponse) {
-                if (
-                    $reponse['choix'] === 'aime'
-                    && isset($autresReponses[$idExtrait])
-                    && $autresReponses[$idExtrait]['choix'] === 'aime'
-                ) {
-                    $nbSonsCommuns++;
+                if ($reponse['choix'] === 'aime' && isset($autresReponses[$idExtrait])) {
+                    if ($autresReponses[$idExtrait]['choix'] === 'aime') {
+                        $nbSonsCommuns++;
+                    }
                 }
             }
 

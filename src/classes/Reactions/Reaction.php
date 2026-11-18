@@ -61,7 +61,7 @@ class Reaction {
     public function setChoix(string $choix): void {
         $choix = trim($choix);
 
-        if ($choix === '' || mb_strlen($choix) > 10) {
+        if ($choix === '' || strlen($choix) > 10) {
             throw new \InvalidArgumentException(
                 "Le choix doit contenir entre 1 et 10 caractères."
             );

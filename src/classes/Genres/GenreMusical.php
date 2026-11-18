@@ -32,7 +32,7 @@ class GenreMusical {
     public function setLibelle(string $libelle): void {
         $libelle = trim($libelle);
 
-        if (empty($libelle) || mb_strlen($libelle) > 50) {
+        if (empty($libelle) || strlen($libelle) > 50) {
             throw new \InvalidArgumentException(
                 "Le libellé doit contenir entre 1 et 50 caractères."
             );

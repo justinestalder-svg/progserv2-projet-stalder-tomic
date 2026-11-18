@@ -48,7 +48,7 @@ class Appareil {
             return null;
         }
 
-        return mb_substr(trim($texte), 0, 100);
+        return substr(trim($texte), 0, 100);
     }
 
     // Getters

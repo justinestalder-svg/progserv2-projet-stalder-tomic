@@ -65,7 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['photo'] = $textes['erreur_photo'];
     } else {
         // L'extension du fichier, en minuscules (ex. "jpg")
-        $extension = strtolower(pathinfo($photo['name'], PATHINFO_EXTENSION));
+        $extension = pathinfo($photo['name'], PATHINFO_EXTENSION);
+        $extension = strtolower($extension);
 
         if ($photo['size'] > TAILLE_PHOTO_MAXIMUM) {
             $erreurs['photo'] = $textes['erreur_photo_taille'];

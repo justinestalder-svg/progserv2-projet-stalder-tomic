@@ -34,7 +34,7 @@ if ($monProfil === null) {
     exit();
 }
 
-// Bouton « + Partager le mien » / « Partagé ✓ » : on partage ou on retire le partage
+// Bouton pour partager ou retirer le partage de mon Instagram
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['partager'])) {
     $idAutreProfil = (int) $_POST['partager'];
 
@@ -158,7 +158,7 @@ foreach ($matchManager->getMatchsByProfilId($monProfil->getId()) as $match) {
                 <!-- Badge Instagram -->
                 <p><?= $textes['matchs_etat_' . $carte['etat']] ?></p>
 
-                <!-- Lui/elle → moi -->
+                <!-- Lui/elle vers moi -->
                 <p>
                     <?= htmlspecialchars($carte['pseudo']) ?> → <?= $textes['matchs_toi'] ?> :
                     <?php if ($carte['il_ma_partage']) { ?>
@@ -168,7 +168,7 @@ foreach ($matchManager->getMatchsByProfilId($monProfil->getId()) as $match) {
                     <?php } ?>
                 </p>
 
-                <!-- Moi → lui/elle -->
+                <!-- Moi vers lui/elle -->
                 <form method="post">
                     <?= $textes['matchs_toi'] ?> → <?= htmlspecialchars($carte['pseudo']) ?> :
                     <input type="hidden" name="filtre" value="<?= $filtre ?>">
