@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $textes['connexion_titre'] ?> | SoundMatch</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -119,14 +120,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span><?= $textes['connexion_pas_de_compte'] ?></span>
         <a href="inscription.php"><?= $textes['connexion_lien_inscription'] ?></a>
     </div>
-</body>
 
-<?php if (!$cookiesAcceptes) { ?>
-    <p>
-        <?= $textes['cookies_message'] ?>
-        <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
-    </p>
-<?php } ?>
+    <?php if (!$cookiesAcceptes) { ?>
+        <p>
+            <?= $textes['cookies_message'] ?>
+            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+        </p>
+    <?php } ?>
+
+</body>
 
 
 </html>
