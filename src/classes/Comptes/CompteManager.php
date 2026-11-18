@@ -106,7 +106,20 @@ class CompteManager implements CompteManagerInterface {
                     :date_inscription, :date_acceptation_cgu, :nb_echecs_connexion, :bloque_jusqua)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $compte);
+        $stmt->bindValue(':pseudo', $compte->getPseudo());
+        $stmt->bindValue(':email', $compte->getEmail());
+        $stmt->bindValue(':mot_de_passe_hash', $compte->getMotDePasseHash());
+        $stmt->bindValue(':langue', $compte->getLangue());
+        $stmt->bindValue(':email_confirme', $compte->isEmailConfirme(), \PDO::PARAM_BOOL);
+        $stmt->bindValue(':date_inscription', $compte->getDateInscription()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_acceptation_cgu', $compte->getDateAcceptationCgu()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':nb_echecs_connexion', $compte->getNbEchecsConnexion(), \PDO::PARAM_INT);
+        // Si la date est vide, on enregistre NULL
+        $bloqueJusqua = null;
+        if ($compte->getBloqueJusqua() !== null) {
+            $bloqueJusqua = $compte->getBloqueJusqua()->format('Y-m-d H:i:s');
+        }
+        $stmt->bindValue(':bloque_jusqua', $bloqueJusqua);
         $stmt->execute();
 
         // Identifiant du compte qui vient d'être créé
@@ -121,7 +134,21 @@ class CompteManager implements CompteManagerInterface {
                 WHERE id_compte = :id";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $compte);
+        $stmt->bindValue(':pseudo', $compte->getPseudo());
+        $stmt->bindValue(':email', $compte->getEmail());
+        $stmt->bindValue(':mot_de_passe_hash', $compte->getMotDePasseHash());
+        $stmt->bindValue(':langue', $compte->getLangue());
+        $stmt->bindValue(':email_confirme', $compte->isEmailConfirme(), \PDO::PARAM_BOOL);
+        $stmt->bindValue(':date_inscription', $compte->getDateInscription()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_acceptation_cgu', $compte->getDateAcceptationCgu()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':nb_echecs_connexion', $compte->getNbEchecsConnexion(), \PDO::PARAM_INT);
+        // Si la date est vide, on enregistre NULL
+        $bloqueJusqua = null;
+        if ($compte->getBloqueJusqua() !== null) {
+            $bloqueJusqua = $compte->getBloqueJusqua()->format('Y-m-d H:i:s');
+        }
+        $stmt->bindValue(':bloque_jusqua', $bloqueJusqua);
+        
         $stmt->bindValue(':id', $compte->getId());
 
         return $stmt->execute();
@@ -134,18 +161,5 @@ class CompteManager implements CompteManagerInterface {
         $stmt->bindValue(':id', $id);
 
         return $stmt->execute();
-    }
-
-    // Lie les attributs du compte aux paramètres de la requête (utilisé par add et update)
-    private function lierValeurs(\PDOStatement $stmt, Compte $compte): void {
-        $stmt->bindValue(':pseudo', $compte->getPseudo());
-        $stmt->bindValue(':email', $compte->getEmail());
-        $stmt->bindValue(':mot_de_passe_hash', $compte->getMotDePasseHash());
-        $stmt->bindValue(':langue', $compte->getLangue());
-        $stmt->bindValue(':email_confirme', $compte->isEmailConfirme(), \PDO::PARAM_BOOL);
-        $stmt->bindValue(':date_inscription', $compte->getDateInscription()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':date_acceptation_cgu', $compte->getDateAcceptationCgu()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':nb_echecs_connexion', $compte->getNbEchecsConnexion(), \PDO::PARAM_INT);
-        $stmt->bindValue(':bloque_jusqua', $compte->getBloqueJusqua()?->format('Y-m-d H:i:s'));
     }
 }

@@ -90,7 +90,18 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
                     :date_expiration, :date_utilisation, :id_compte)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $jeton);
+        $stmt->bindValue(':type', $jeton->getType());
+        $stmt->bindValue(':valeur_hash', $jeton->getValeurHash());
+        $stmt->bindValue(':email_cible', $jeton->getEmailCible());
+        $stmt->bindValue(':date_creation', $jeton->getDateCreation()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_expiration', $jeton->getDateExpiration()->format('Y-m-d H:i:s'));
+        // Si la date est vide, on enregistre NULL
+        $dateUtilisation = null;
+        if ($jeton->getDateUtilisation() !== null) {
+            $dateUtilisation = $jeton->getDateUtilisation()->format('Y-m-d H:i:s');
+        }
+        $stmt->bindValue(':date_utilisation', $dateUtilisation);
+        $stmt->bindValue(':id_compte', $jeton->getIdCompte(), \PDO::PARAM_INT);
         $stmt->execute();
 
         // Identifiant du jeton qui vient d'être créé
@@ -104,7 +115,18 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
                 WHERE id_jeton = :id";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $jeton);
+        $stmt->bindValue(':type', $jeton->getType());
+        $stmt->bindValue(':valeur_hash', $jeton->getValeurHash());
+        $stmt->bindValue(':email_cible', $jeton->getEmailCible());
+        $stmt->bindValue(':date_creation', $jeton->getDateCreation()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':date_expiration', $jeton->getDateExpiration()->format('Y-m-d H:i:s'));
+        // Si la date est vide, on enregistre NULL
+        $dateUtilisation = null;
+        if ($jeton->getDateUtilisation() !== null) {
+            $dateUtilisation = $jeton->getDateUtilisation()->format('Y-m-d H:i:s');
+        }
+        $stmt->bindValue(':date_utilisation', $dateUtilisation);
+        $stmt->bindValue(':id_compte', $jeton->getIdCompte(), \PDO::PARAM_INT);
         $stmt->bindValue(':id', $jeton->getId());
 
         return $stmt->execute();
@@ -117,16 +139,5 @@ class JetonVerificationManager implements JetonVerificationManagerInterface {
         $stmt->bindValue(':id', $id);
 
         return $stmt->execute();
-    }
-
-    // Lie les attributs du jeton aux paramètres de la requête (utilisé par add et update)
-    private function lierValeurs(\PDOStatement $stmt, JetonVerification $jeton): void {
-        $stmt->bindValue(':type', $jeton->getType());
-        $stmt->bindValue(':valeur_hash', $jeton->getValeurHash());
-        $stmt->bindValue(':email_cible', $jeton->getEmailCible());
-        $stmt->bindValue(':date_creation', $jeton->getDateCreation()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':date_expiration', $jeton->getDateExpiration()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':date_utilisation', $jeton->getDateUtilisation()?->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':id_compte', $jeton->getIdCompte(), \PDO::PARAM_INT);
     }
 }

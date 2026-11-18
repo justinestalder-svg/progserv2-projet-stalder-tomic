@@ -68,7 +68,12 @@ class ExtraitManager implements ExtraitManagerInterface {
                     (:titre, :artiste, :duree_secondes, :url_audio, :couleur_pochette, :id_genre)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $extrait);
+        $stmt->bindValue(':titre', $extrait->getTitre());
+        $stmt->bindValue(':artiste', $extrait->getArtiste());
+        $stmt->bindValue(':duree_secondes', $extrait->getDureeSecondes(), \PDO::PARAM_INT);
+        $stmt->bindValue(':url_audio', $extrait->getUrlAudio());
+        $stmt->bindValue(':couleur_pochette', $extrait->getCouleurPochette());
+        $stmt->bindValue(':id_genre', $extrait->getIdGenre(), \PDO::PARAM_INT);
         $stmt->execute();
 
         return (int) $this->database->getPdo()->lastInsertId();
@@ -86,7 +91,12 @@ class ExtraitManager implements ExtraitManagerInterface {
                 WHERE id_extrait = :id";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $extrait);
+        $stmt->bindValue(':titre', $extrait->getTitre());
+        $stmt->bindValue(':artiste', $extrait->getArtiste());
+        $stmt->bindValue(':duree_secondes', $extrait->getDureeSecondes(), \PDO::PARAM_INT);
+        $stmt->bindValue(':url_audio', $extrait->getUrlAudio());
+        $stmt->bindValue(':couleur_pochette', $extrait->getCouleurPochette());
+        $stmt->bindValue(':id_genre', $extrait->getIdGenre(), \PDO::PARAM_INT);
         $stmt->bindValue(':id', $extrait->getId(), \PDO::PARAM_INT);
 
         return $stmt->execute();
@@ -101,14 +111,5 @@ class ExtraitManager implements ExtraitManagerInterface {
 
         return $stmt->execute();
     }
-
-    // Lie les attributs de l'extrait aux paramètres SQL
-    private function lierValeurs(\PDOStatement $stmt, Extrait $extrait): void {
-        $stmt->bindValue(':titre', $extrait->getTitre());
-        $stmt->bindValue(':artiste', $extrait->getArtiste());
-        $stmt->bindValue(':duree_secondes', $extrait->getDureeSecondes(), \PDO::PARAM_INT);
-        $stmt->bindValue(':url_audio', $extrait->getUrlAudio());
-        $stmt->bindValue(':couleur_pochette', $extrait->getCouleurPochette());
-        $stmt->bindValue(':id_genre', $extrait->getIdGenre(), \PDO::PARAM_INT);
-    }
 }
+

@@ -77,7 +77,12 @@ class ProfilManager implements ProfilManagerInterface {
                 VALUES (:genre, :date_naissance, :photo_profil, :nom_instagram, :ville, :id_compte)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $profil);
+        $stmt->bindValue(':genre', $profil->getGenre());
+        $stmt->bindValue(':date_naissance', $profil->getDateNaissance()->format('Y-m-d'));
+        $stmt->bindValue(':photo_profil', $profil->getPhotoProfil());
+        $stmt->bindValue(':nom_instagram', $profil->getNomInstagram());
+        $stmt->bindValue(':ville', $profil->getVille());
+        $stmt->bindValue(':id_compte', $profil->getIdCompte(), \PDO::PARAM_INT);
         $stmt->execute();
 
         // Identifiant du profil qui vient d'être créé
@@ -90,7 +95,12 @@ class ProfilManager implements ProfilManagerInterface {
                 WHERE id_profil = :id";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $profil);
+        $stmt->bindValue(':genre', $profil->getGenre());
+        $stmt->bindValue(':date_naissance', $profil->getDateNaissance()->format('Y-m-d'));
+        $stmt->bindValue(':photo_profil', $profil->getPhotoProfil());
+        $stmt->bindValue(':nom_instagram', $profil->getNomInstagram());
+        $stmt->bindValue(':ville', $profil->getVille());
+        $stmt->bindValue(':id_compte', $profil->getIdCompte(), \PDO::PARAM_INT);
         $stmt->bindValue(':id', $profil->getId());
 
         return $stmt->execute();
@@ -103,15 +113,5 @@ class ProfilManager implements ProfilManagerInterface {
         $stmt->bindValue(':id', $id);
 
         return $stmt->execute();
-    }
-
-    // Lie les attributs du profil aux paramètres de la requête (utilisé par add et update)
-    private function lierValeurs(\PDOStatement $stmt, Profil $profil): void {
-        $stmt->bindValue(':genre', $profil->getGenre());
-        $stmt->bindValue(':date_naissance', $profil->getDateNaissance()->format('Y-m-d'));
-        $stmt->bindValue(':photo_profil', $profil->getPhotoProfil());
-        $stmt->bindValue(':nom_instagram', $profil->getNomInstagram());
-        $stmt->bindValue(':ville', $profil->getVille());
-        $stmt->bindValue(':id_compte', $profil->getIdCompte(), \PDO::PARAM_INT);
     }
 }

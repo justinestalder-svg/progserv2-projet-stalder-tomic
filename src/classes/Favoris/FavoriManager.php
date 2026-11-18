@@ -93,7 +93,9 @@ class FavoriManager implements FavoriManagerInterface {
                     (:id_profil, :id_extrait, :date_ajout)";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $favori);
+        $stmt->bindValue(':id_profil', $favori->getIdProfil(), \PDO::PARAM_INT);
+        $stmt->bindValue(':id_extrait', $favori->getIdExtrait(), \PDO::PARAM_INT);
+        $stmt->bindValue(':date_ajout', $favori->getDateAjout()->format('Y-m-d H:i:s'));
 
         return $stmt->execute();
     }
@@ -106,7 +108,9 @@ class FavoriManager implements FavoriManagerInterface {
                 AND id_extrait = :id_extrait";
 
         $stmt = $this->database->getPdo()->prepare($sql);
-        $this->lierValeurs($stmt, $favori);
+        $stmt->bindValue(':id_profil', $favori->getIdProfil(), \PDO::PARAM_INT);
+        $stmt->bindValue(':id_extrait', $favori->getIdExtrait(), \PDO::PARAM_INT);
+        $stmt->bindValue(':date_ajout', $favori->getDateAjout()->format('Y-m-d H:i:s'));
 
         return $stmt->execute();
     }
@@ -125,28 +129,5 @@ class FavoriManager implements FavoriManagerInterface {
         $stmt->bindValue(':id_extrait', $idExtrait, \PDO::PARAM_INT);
 
         return $stmt->execute();
-    }
-
-    // Associer les attributs PHP aux paramètres SQL
-    private function lierValeurs(
-        \PDOStatement $stmt,
-        Favori $favori
-    ): void {
-        $stmt->bindValue(
-            ':id_profil',
-            $favori->getIdProfil(),
-            \PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':id_extrait',
-            $favori->getIdExtrait(),
-            \PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':date_ajout',
-            $favori->getDateAjout()->format('Y-m-d H:i:s')
-        );
     }
 }

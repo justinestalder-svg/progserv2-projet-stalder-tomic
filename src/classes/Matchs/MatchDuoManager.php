@@ -111,7 +111,13 @@ class MatchDuoManager implements MatchDuoManagerInterface {
                         :texte_analyse, :id_profil_1, :id_profil_2)";
 
             $stmt = $pdo->prepare($sql);
-            $this->lierValeurs($stmt, $match);
+            $stmt->bindValue(':score_global', $match->getScoreGlobal(), \PDO::PARAM_INT);
+            $stmt->bindValue(':nb_sons_communs', $match->getNbSonsCommuns(), \PDO::PARAM_INT);
+            $stmt->bindValue(':date_match', $match->getDateMatch()->format('Y-m-d H:i:s'));
+            $stmt->bindValue(':titre_duo', $match->getTitreDuo());
+            $stmt->bindValue(':texte_analyse', $match->getTexteAnalyse());
+            $stmt->bindValue(':id_profil_1', $match->getIdProfil1(), \PDO::PARAM_INT);
+            $stmt->bindValue(':id_profil_2', $match->getIdProfil2(), \PDO::PARAM_INT);
             $stmt->execute();
 
             $idMatch = (int) $pdo->lastInsertId();
@@ -138,7 +144,13 @@ class MatchDuoManager implements MatchDuoManagerInterface {
                     WHERE id_match = :id";
 
             $stmt = $pdo->prepare($sql);
-            $this->lierValeurs($stmt, $match);
+            $stmt->bindValue(':score_global', $match->getScoreGlobal(), \PDO::PARAM_INT);
+            $stmt->bindValue(':nb_sons_communs', $match->getNbSonsCommuns(), \PDO::PARAM_INT);
+            $stmt->bindValue(':date_match', $match->getDateMatch()->format('Y-m-d H:i:s'));
+            $stmt->bindValue(':titre_duo', $match->getTitreDuo());
+            $stmt->bindValue(':texte_analyse', $match->getTexteAnalyse());
+            $stmt->bindValue(':id_profil_1', $match->getIdProfil1(), \PDO::PARAM_INT);
+            $stmt->bindValue(':id_profil_2', $match->getIdProfil2(), \PDO::PARAM_INT);
             $stmt->bindValue(':id', $match->getId());
             $stmt->execute();
 
@@ -193,16 +205,5 @@ class MatchDuoManager implements MatchDuoManagerInterface {
         $stmt = $this->database->getPdo()->prepare("DELETE FROM score_genre WHERE id_match = :id_match");
         $stmt->bindValue(':id_match', $idMatch);
         $stmt->execute();
-    }
-
-    // Lie les attributs du match aux paramètres de la requête (utilisé par add et update)
-    private function lierValeurs(\PDOStatement $stmt, MatchDuo $match): void {
-        $stmt->bindValue(':score_global', $match->getScoreGlobal(), \PDO::PARAM_INT);
-        $stmt->bindValue(':nb_sons_communs', $match->getNbSonsCommuns(), \PDO::PARAM_INT);
-        $stmt->bindValue(':date_match', $match->getDateMatch()->format('Y-m-d H:i:s'));
-        $stmt->bindValue(':titre_duo', $match->getTitreDuo());
-        $stmt->bindValue(':texte_analyse', $match->getTexteAnalyse());
-        $stmt->bindValue(':id_profil_1', $match->getIdProfil1(), \PDO::PARAM_INT);
-        $stmt->bindValue(':id_profil_2', $match->getIdProfil2(), \PDO::PARAM_INT);
     }
 }

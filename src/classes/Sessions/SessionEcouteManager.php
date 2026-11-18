@@ -85,8 +85,10 @@ class SessionEcouteManager implements SessionEcouteManagerInterface {
 
         $pdo = $this->database->getPdo();
         $stmt = $pdo->prepare($sql);
-
-        $this->lierValeurs($stmt, $session);
+        $stmt->bindValue(':date_debut', $session->getDateDebut()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':statut', $session->getStatut());
+        $stmt->bindValue(':id_profil', $session->getIdProfil(), \PDO::PARAM_INT);
+        $stmt->bindValue(':id_serie', $session->getIdSerie(), \PDO::PARAM_INT);
         $stmt->execute();
 
         return (int) $pdo->lastInsertId();
@@ -109,7 +111,10 @@ class SessionEcouteManager implements SessionEcouteManagerInterface {
 
         $stmt = $this->database->getPdo()->prepare($sql);
 
-        $this->lierValeurs($stmt, $session);
+        $stmt->bindValue(':date_debut', $session->getDateDebut()->format('Y-m-d H:i:s'));
+        $stmt->bindValue(':statut', $session->getStatut());
+        $stmt->bindValue(':id_profil', $session->getIdProfil(), \PDO::PARAM_INT);
+        $stmt->bindValue(':id_serie', $session->getIdSerie(), \PDO::PARAM_INT);
         $stmt->bindValue(
             ':id',
             $session->getId(),
@@ -128,33 +133,5 @@ class SessionEcouteManager implements SessionEcouteManagerInterface {
         $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
 
         return $stmt->execute();
-    }
-
-    // Associe les attributs PHP aux paramètres SQL
-    private function lierValeurs(
-        \PDOStatement $stmt,
-        SessionEcoute $session
-    ): void {
-        $stmt->bindValue(
-            ':date_debut',
-            $session->getDateDebut()->format('Y-m-d H:i:s')
-        );
-
-        $stmt->bindValue(
-            ':statut',
-            $session->getStatut()
-        );
-
-        $stmt->bindValue(
-            ':id_profil',
-            $session->getIdProfil(),
-            \PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':id_serie',
-            $session->getIdSerie(),
-            \PDO::PARAM_INT
-        );
     }
 }
