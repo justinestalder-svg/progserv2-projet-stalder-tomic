@@ -31,7 +31,9 @@ class MatchDuoManager implements MatchDuoManagerInterface {
         $stmt->bindValue(':id_match', $donnees['id_match']);
         $stmt->execute();
 
-        foreach ($stmt->fetchAll() as $ligne) {
+        $lignes = $stmt->fetchAll();
+
+        foreach ($lignes as $ligne) {
             $match->setScoreGenre($ligne['id_genre'], $ligne['score_genre']);
         }
 

@@ -59,7 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enregistrer'])) {
     $pseudo = trim($_POST['pseudo'] ?? '');
     $dateNaissance = $_POST['date_naissance'] ?? '';
     $genre = $_POST['genre'] ?? '';
-    $instagram = ltrim(trim($_POST['instagram'] ?? ''), '@');
+    $instagram = trim($_POST['instagram'] ?? '');
+    // On enlève le @ au début s'il y en a un
+    $instagram = ltrim($instagram, '@');
 
     // 1. Pseudo : mêmes règles qu'à l'inscription
     if (!preg_match('/^[A-Za-z0-9._]{3,20}$/', $pseudo)) {
@@ -99,8 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enregistrer'])) {
         if ($photo['error'] !== UPLOAD_ERR_OK) {
             $erreurs['photo'] = $textes['erreur_photo'];
         } else {
-            $extension = strtolower(pathinfo($photo['name'], PATHINFO_EXTENSION));
-
+            $extension = pathinfo($photo['name'], PATHINFO_EXTENSION);
+            $extension = strtolower($extension);
+            
             if ($photo['size'] > TAILLE_PHOTO_MAXIMUM) {
                 $erreurs['photo'] = $textes['erreur_photo_taille'];
             } else if (!in_array($extension, EXTENSIONS_PHOTO) || getimagesize($photo['tmp_name']) === false) {
@@ -142,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enregistrer'])) {
             $compte->setPseudo($pseudo);
             $compteManager->updateCompte($compte);
 
-            // On met aussi à jour le pseudo gardé dans la session (pour « Bonjour … »)
+            // On met aussi à jour le pseudo dans la session
             $_SESSION['pseudo'] = $pseudo;
 
             $succes = true;

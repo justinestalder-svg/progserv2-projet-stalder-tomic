@@ -61,7 +61,7 @@ class Extrait {
     public function setTitre(string $titre): void {
         $titre = trim($titre);
 
-        if ($titre === '' || mb_strlen($titre) > 150) {
+        if ($titre === '' || strlen($titre) > 150) {
             throw new \InvalidArgumentException(
                 "Le titre doit contenir entre 1 et 150 caractères."
             );
@@ -73,7 +73,7 @@ class Extrait {
     public function setArtiste(string $artiste): void {
         $artiste = trim($artiste);
 
-        if ($artiste === '' || mb_strlen($artiste) > 150) {
+        if ($artiste === '' || strlen($artiste) > 150) {
             throw new \InvalidArgumentException(
                 "Le nom de l'artiste doit contenir entre 1 et 150 caractères."
             );
@@ -95,7 +95,7 @@ class Extrait {
     public function setUrlAudio(string $urlAudio): void {
         $urlAudio = trim($urlAudio);
 
-        if ($urlAudio === '' || mb_strlen($urlAudio) > 255) {
+        if ($urlAudio === '' || strlen($urlAudio) > 255) {
             throw new \InvalidArgumentException(
                 "L'URL audio doit contenir entre 1 et 255 caractères."
             );

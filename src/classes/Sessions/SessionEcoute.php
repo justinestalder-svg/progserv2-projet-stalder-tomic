@@ -62,7 +62,7 @@ class SessionEcoute {
     public function setStatut(string $statut): void {
         $statut = trim($statut);
 
-        if ($statut === '' || mb_strlen($statut) > 20) {
+        if ($statut === '' || strlen($statut) > 20) {
             throw new \InvalidArgumentException(
                 "Le statut doit contenir entre 1 et 20 caractères."
             );

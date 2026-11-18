@@ -34,7 +34,7 @@ class Serie {
     public function setNom(string $nom): void {
         $nom = trim($nom);
 
-        if ($nom === '' || mb_strlen($nom) > 50) {
+        if ($nom === '' || strlen($nom) > 50) {
             throw new \InvalidArgumentException(
                 "Le nom doit contenir entre 1 et 50 caractères."
             );
