@@ -13,9 +13,10 @@ class IdeeDateManager implements IdeeDateManagerInterface {
     }
 
     public function getIdeesDate(): array {
-        $stmt = $this->pdo->query(
-            "SELECT * FROM idee_date ORDER BY id_idee"
-        );
+        // Requête préparée, même sans saisie de l'utilisateur (recommandé par le cours)
+        $sql = "SELECT * FROM idee_date ORDER BY id_idee";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
 
         return $this->convertirEnObjets($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
