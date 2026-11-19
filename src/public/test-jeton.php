@@ -47,7 +47,7 @@ $utiliseApres = $jetonManager->getJetonById($idJeton)->estUtilise();
 $jetonManager->removeJeton($idJeton);
 $compteManager->removeCompte($idCompte);
 ?>
-<p>Jeton <?= $idJeton ?> créé pour le compte <?= $idCompte ?> (type : <?= htmlspecialchars($jeton->getType()) ?>).</p>
-<p><?= $valideAvant ? '✅' : '❌' ?> Avant le clic : le jeton est valable.</p>
-<p><?= $utiliseApres ? '✅' : '❌' ?> Après le clic : le jeton est marqué comme utilisé.</p>
+<p>Jeton <?= htmlspecialchars($idJeton) ?> créé pour le compte <?= htmlspecialchars($idCompte) ?> (type : <?= htmlspecialchars($jeton->getType()) ?>).</p>
+<p><?= htmlspecialchars($valideAvant ? '✅' : '❌') ?> Avant le clic : le jeton est valable.</p>
+<p><?= htmlspecialchars($utiliseApres ? '✅' : '❌') ?> Après le clic : le jeton est marqué comme utilisé.</p>
 <p>✅ JetonVerification et JetonVerificationManager fonctionnent. Le jeton et le compte de test ont été supprimés.</p>

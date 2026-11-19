@@ -67,49 +67,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['mdp_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['mdp_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
     <?php require __DIR__ . '/../includes/entete.php'; ?>
 
     <main>
-        <a href="reglages.php"><?= $textes['mdp_retour'] ?></a>
-        <h1><?= $textes['mdp_titre'] ?></h1>
+        <a href="reglages.php"><?= htmlspecialchars($textes['mdp_retour']) ?></a>
+        <h1><?= htmlspecialchars($textes['mdp_titre']) ?></h1>
 
         <?php if ($succes) { ?>
             <!-- Écran de succès -->
-            <p><?= $textes['mdp_succes'] ?></p>
-            <a href="reglages.php"><?= $textes['mdp_retour'] ?></a>
+            <p><?= htmlspecialchars($textes['mdp_succes']) ?></p>
+            <a href="reglages.php"><?= htmlspecialchars($textes['mdp_retour']) ?></a>
         <?php } else { ?>
             <form method="post">
                 <!-- 1. Mot de passe actuel -->
                 <div>
-                    <label for="mot_de_passe_actuel"><?= $textes['mdp_actuel'] ?></label>
+                    <label for="mot_de_passe_actuel"><?= htmlspecialchars($textes['mdp_actuel']) ?></label>
                     <input type="password" id="mot_de_passe_actuel" name="mot_de_passe_actuel"
                         required autocomplete="current-password">
                     <?php if (isset($erreurs['actuel'])) { ?>
                         <p><?= htmlspecialchars($erreurs['actuel']) ?></p>
                     <?php } ?>
-                    <a href="mot-de-passe-oublie.php"><?= $textes['mdp_oublie_lien'] ?></a>
+                    <a href="mot-de-passe-oublie.php"><?= htmlspecialchars($textes['mdp_oublie_lien']) ?></a>
                 </div>
 
                 <!-- 2. Nouveau mot de passe -->
                 <div>
-                    <label for="nouveau_mot_de_passe"><?= $textes['mdp_nouveau'] ?></label>
+                    <label for="nouveau_mot_de_passe"><?= htmlspecialchars($textes['mdp_nouveau']) ?></label>
                     <input type="password" id="nouveau_mot_de_passe" name="nouveau_mot_de_passe"
                         required minlength="10" autocomplete="new-password">
                     <ul>
-                        <li><?= $textes['inscription_regle_longueur'] ?></li>
-                        <li><?= $textes['inscription_regle_majuscule'] ?></li>
-                        <li><?= $textes['inscription_regle_chiffre'] ?></li>
-                        <li><?= $textes['inscription_regle_special'] ?></li>
-                        <li><?= $textes['mdp_regle_different'] ?></li>
+                        <li><?= htmlspecialchars($textes['inscription_regle_longueur']) ?></li>
+                        <li><?= htmlspecialchars($textes['inscription_regle_majuscule']) ?></li>
+                        <li><?= htmlspecialchars($textes['inscription_regle_chiffre']) ?></li>
+                        <li><?= htmlspecialchars($textes['inscription_regle_special']) ?></li>
+                        <li><?= htmlspecialchars($textes['mdp_regle_different']) ?></li>
                     </ul>
                     <?php if (isset($erreurs['nouveau'])) { ?>
                         <p><?= htmlspecialchars($erreurs['nouveau']) ?></p>
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- 3. Confirmation -->
                 <div>
-                    <label for="confirmation"><?= $textes['mdp_confirmation'] ?></label>
+                    <label for="confirmation"><?= htmlspecialchars($textes['mdp_confirmation']) ?></label>
                     <input type="password" id="confirmation" name="confirmation"
                         required minlength="10" autocomplete="new-password">
                     <?php if (isset($erreurs['confirmation'])) { ?>
@@ -126,16 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php } ?>
                 </div>
 
-                <a href="reglages.php"><?= $textes['mdp_annuler'] ?></a>
-                <button type="submit"><?= $textes['mdp_bouton'] ?></button>
+                <a href="reglages.php"><?= htmlspecialchars($textes['mdp_annuler']) ?></a>
+                <button type="submit"><?= htmlspecialchars($textes['mdp_bouton']) ?></button>
             </form>
         <?php } ?>
     </main>
 
     <?php if (!$cookiesAcceptes) { ?>
         <p>
-            <?= $textes['cookies_message'] ?>
-            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+            <?= htmlspecialchars($textes['cookies_message']) ?>
+            <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
         </p>
     <?php } ?>
 </body>

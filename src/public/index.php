@@ -58,8 +58,9 @@ if ($estConnecte) {
     }
 }
 ?>
+
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -75,79 +76,79 @@ if ($estConnecte) {
         <!-- Visiteur : choix de la langue + liens vers le compte -->
         <header>
             <a href="index.php">SoundMatch</a>
-            <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
-            <a href="connexion.php"><?= $textes['accueil_se_connecter'] ?></a>
-            <a href="inscription.php"><?= $textes['accueil_creer_compte'] ?></a>
+            <a href="?langue=fr"><?= htmlspecialchars($textes['francais']) ?></a> | <a href="?langue=en"><?= htmlspecialchars($textes['anglais']) ?></a>
+            <a href="connexion.php"><?= htmlspecialchars($textes['accueil_se_connecter']) ?></a>
+            <a href="inscription.php"><?= htmlspecialchars($textes['accueil_creer_compte']) ?></a>
         </header>
     <?php } ?>
 
     <main>
         <!-- Accroche -->
         <section>
-            <h1><?= $textes['accueil_accroche'] ?></h1>
-            <p><?= $textes['accueil_texte'] ?></p>
+            <h1><?= htmlspecialchars($textes['accueil_accroche']) ?></h1>
+            <p><?= htmlspecialchars($textes['accueil_texte']) ?></p>
 
             <?php if ($estConnecte) { ?>
-                <p><?= $textes['profil_bonjour'] ?> <?= htmlspecialchars($_SESSION['pseudo']) ?> 👋</p>
-                <a href="session.php"><?= $textes['accueil_commencer'] ?></a>
+                <p><?= htmlspecialchars($textes['profil_bonjour']) ?> <?= htmlspecialchars($_SESSION['pseudo']) ?> 👋</p>
+                <a href="session.php"><?= htmlspecialchars($textes['accueil_commencer']) ?></a>
             <?php } else { ?>
-                <a href="inscription.php"><?= $textes['accueil_creer_compte'] ?></a>
+                <a href="inscription.php"><?= htmlspecialchars($textes['accueil_creer_compte']) ?></a>
             <?php } ?>
 
-            <a href="#comment"><?= $textes['menu_comment'] ?></a>
+            <a href="#comment"><?= htmlspecialchars($textes['menu_comment']) ?></a>
         </section>
 
         <!-- Le concept : 3 étapes -->
         <section id="concept">
-            <h2><?= $textes['menu_concept'] ?></h2>
+            <h2><?= htmlspecialchars($textes['menu_concept']) ?></h2>
             <ol>
-                <li><strong><?= $textes['concept_ecoute_titre'] ?></strong> : <?= $textes['concept_ecoute_texte'] ?></li>
-                <li><strong><?= $textes['concept_choisis_titre'] ?></strong> : <?= $textes['concept_choisis_texte'] ?></li>
-                <li><strong><?= $textes['concept_match_titre'] ?></strong> : <?= $textes['concept_match_texte'] ?></li>
+                <li><strong><?= htmlspecialchars($textes['concept_ecoute_titre']) ?></strong> : <?= htmlspecialchars($textes['concept_ecoute_texte']) ?></li>
+                <li><strong><?= htmlspecialchars($textes['concept_choisis_titre']) ?></strong> : <?= htmlspecialchars($textes['concept_choisis_texte']) ?></li>
+                <li><strong><?= htmlspecialchars($textes['concept_match_titre']) ?></strong> : <?= htmlspecialchars($textes['concept_match_texte']) ?></li>
             </ol>
         </section>
 
         <!-- Comment ça marche ? -->
         <section id="comment">
-            <h2><?= $textes['menu_comment'] ?></h2>
-            <p><?= $textes['comment_texte'] ?></p>
-            <p><?= $textes['comment_exemple'] ?></p>
+            <h2><?= htmlspecialchars($textes['menu_comment']) ?></h2>
+            <p><?= htmlspecialchars($textes['comment_texte']) ?></p>
+            <p><?= htmlspecialchars($textes['comment_exemple']) ?></p>
         </section>
 
         <!-- Tes meilleurs matchs (seulement si connecté) -->
         <?php if ($estConnecte) { ?>
             <section>
-                <h2><?= $textes['accueil_meilleurs_matchs'] ?></h2>
+                <h2><?= htmlspecialchars($textes['accueil_meilleurs_matchs']) ?></h2>
 
                 <?php if (empty($meilleursMatchs)) { ?>
-                    <p><?= $textes['accueil_aucun_match'] ?></p>
-                    <a href="session.php"><?= $textes['accueil_commencer'] ?></a>
+                    <p><?= htmlspecialchars($textes['accueil_aucun_match']) ?></p>
+                    <a href="session.php"><?= htmlspecialchars($textes['accueil_commencer']) ?></a>
                 <?php } else { ?>
                     <ul>
                         <?php foreach ($meilleursMatchs as $unMatch) { ?>
                             <li>
-                                <a href="compatibilite.php?id=<?= $unMatch['id_match'] ?>">
+                                <a href="compatibilite.php?id=<?= htmlspecialchars($unMatch['id_match']) ?>">
                                     <?= htmlspecialchars($unMatch['pseudo']) ?>,
-                                    <?= $unMatch['age'] ?> <?= $textes['accueil_ans'] ?> :
-                                    <?= $unMatch['score'] ?> %
+                                    <?= htmlspecialchars($unMatch['age']) ?> <?= htmlspecialchars($textes['accueil_ans']) ?> :
+                                    <?= htmlspecialchars($unMatch['score']) ?> %
                                 </a>
                             </li>
                         <?php } ?>
                     </ul>
-                    <a href="matchs.php"><?= $textes['accueil_voir_matchs'] ?></a>
+                    <a href="matchs.php"><?= htmlspecialchars($textes['accueil_voir_matchs']) ?></a>
                 <?php } ?>
             </section>
         <?php } ?>
     </main>
 
     <footer>
-        <p><?= $textes['accueil_description'] ?></p>
+        <p><?= htmlspecialchars($textes['accueil_description']) ?></p>
     </footer>
 
     <?php if (!$cookiesAcceptes) { ?>
         <p>
-            <?= $textes['cookies_message'] ?>
-            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+            <?= htmlspecialchars($textes['cookies_message']) ?>
+            <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
         </p>
     <?php } ?>
 </body>

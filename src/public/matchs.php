@@ -116,32 +116,32 @@ foreach ($matchManager->getMatchsByProfilId($monProfil->getId()) as $match) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['matchs_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['matchs_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
     <?php require __DIR__ . '/../includes/entete.php'; ?>
 
     <main>
-        <h1><?= $textes['matchs_titre'] ?></h1>
-        <a href="session.php"><?= $textes['session_nouvelle'] ?></a>
+        <h1><?= htmlspecialchars($textes['matchs_titre']) ?></h1>
+        <a href="session.php"><?= htmlspecialchars($textes['session_nouvelle']) ?></a>
 
         <!-- Filtres -->
         <nav>
-            <a href="matchs.php?filtre=tous"><?= $textes['matchs_filtre_tous'] ?> (<?= $nbTous ?>)</a>
-            <a href="matchs.php?filtre=recus"><?= $textes['matchs_filtre_recus'] ?> (<?= $nbRecus ?>)</a>
-            <a href="matchs.php?filtre=echanges"><?= $textes['matchs_filtre_echanges'] ?> (<?= $nbEchanges ?>)</a>
+            <a href="matchs.php?filtre=tous"><?= htmlspecialchars($textes['matchs_filtre_tous']) ?> (<?= htmlspecialchars($nbTous) ?>)</a>
+            <a href="matchs.php?filtre=recus"><?= htmlspecialchars($textes['matchs_filtre_recus']) ?> (<?= htmlspecialchars($nbRecus) ?>)</a>
+            <a href="matchs.php?filtre=echanges"><?= htmlspecialchars($textes['matchs_filtre_echanges']) ?> (<?= htmlspecialchars($nbEchanges) ?>)</a>
         </nav>
 
         <?php if ($nbTous === 0) { ?>
-            <p><?= $textes['accueil_aucun_match'] ?></p>
+            <p><?= htmlspecialchars($textes['accueil_aucun_match']) ?></p>
         <?php } else if (empty($cartes)) { ?>
-            <p><?= $textes['matchs_aucun_filtre'] ?></p>
+            <p><?= htmlspecialchars($textes['matchs_aucun_filtre']) ?></p>
         <?php } ?>
 
         <!-- Une carte par match, de la plus compatible à la moins compatible -->
@@ -149,43 +149,43 @@ foreach ($matchManager->getMatchsByProfilId($monProfil->getId()) as $match) {
             <article>
                 <img src="<?= htmlspecialchars($carte['photo']) ?>" alt="<?= htmlspecialchars($carte['pseudo']) ?>" width="80">
                 <h2>
-                    <?= htmlspecialchars($carte['pseudo']) ?>, <?= $carte['age'] ?>
+                    <?= htmlspecialchars($carte['pseudo']) ?>,<?= htmlspecialchars($carte['age']) ?>
                     <?php if ($carte['ville'] !== null) { ?>· <?= htmlspecialchars($carte['ville']) ?><?php } ?>
                 </h2>
-                <p><?= $carte['score'] ?> % <?= $textes['matchs_compatibilite'] ?></p>
-                <p><?= $carte['sons_communs'] ?> <?= $textes['matchs_sons_communs'] ?></p>
+                <p><?= htmlspecialchars($carte['score']) ?> %<?= htmlspecialchars($textes['matchs_compatibilite']) ?></p>
+                <p><?= htmlspecialchars($carte['sons_communs']) ?><?= htmlspecialchars($textes['matchs_sons_communs']) ?></p>
 
                 <!-- Badge Instagram -->
-                <p><?= $textes['matchs_etat_' . $carte['etat']] ?></p>
+                <p><?= htmlspecialchars($textes['matchs_etat_' . $carte['etat']]) ?></p>
 
                 <!-- Lui/elle → moi -->
                 <p>
-                    <?= htmlspecialchars($carte['pseudo']) ?> → <?= $textes['matchs_toi'] ?> :
+                    <?= htmlspecialchars($carte['pseudo']) ?> →<?= htmlspecialchars($textes['matchs_toi']) ?> :
                     <?php if ($carte['il_ma_partage']) { ?>
                         <a href="https://instagram.com/<?= htmlspecialchars($carte['instagram']) ?>" target="_blank" rel="noopener">@<?= htmlspecialchars($carte['instagram']) ?> ↗</a>
                     <?php } else { ?>
-                        <?= $textes['matchs_pas_partage'] ?>
+                        <?= htmlspecialchars($textes['matchs_pas_partage']) ?>
                     <?php } ?>
                 </p>
 
                 <!-- Moi → lui/elle -->
                 <form method="post">
-                    <?= $textes['matchs_toi'] ?> → <?= htmlspecialchars($carte['pseudo']) ?> :
-                    <input type="hidden" name="filtre" value="<?= $filtre ?>">
-                    <button type="submit" name="partager" value="<?= $carte['id_profil'] ?>">
-                        <?php if ($carte['jai_partage']) { ?><?= $textes['matchs_partage_ok'] ?><?php } else { ?><?= $textes['matchs_partager'] ?><?php } ?>
+                    <?= htmlspecialchars($textes['matchs_toi']) ?> → <?= htmlspecialchars($carte['pseudo']) ?> :
+                    <input type="hidden" name="filtre" value="<?= htmlspecialchars($filtre) ?>">
+                    <button type="submit" name="partager" value="<?= htmlspecialchars($carte['id_profil']) ?>">
+                        <?php if ($carte['jai_partage']) { ?><?= htmlspecialchars($textes['matchs_partage_ok']) ?><?php } else { ?><?= htmlspecialchars($textes['matchs_partager']) ?><?php } ?>
                     </button>
                 </form>
 
-                <a href="compatibilite.php?id=<?= $carte['id_match'] ?>"><?= $textes['matchs_details'] ?></a>
+                <a href="compatibilite.php?id=<?= htmlspecialchars($carte['id_match']) ?>"><?= htmlspecialchars($textes['matchs_details']) ?></a>
             </article>
         <?php } ?>
     </main>
 
     <?php if (!$cookiesAcceptes) { ?>
         <p>
-            <?= $textes['cookies_message'] ?>
-            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+            <?= htmlspecialchars($textes['cookies_message']) ?>
+            <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
         </p>
     <?php } ?>
 </body>

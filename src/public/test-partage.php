@@ -62,9 +62,9 @@ $profilManager->removeProfil($idBea);
 $compteManager->removeCompte($idCompteA);
 $compteManager->removeCompte($idCompteB);
 ?>
-<p><?= $cree ? '✅' : '❌' ?> Alice a partagé son Instagram avec Béa.</p>
-<p><?= !$doublon ? '✅' : '❌' ?> Le même partage une deuxième fois est ignoré.</p>
-<p><?= $beaVoitAlice && !$aliceVoitBea ? '✅' : '❌' ?> Béa voit l'Instagram d'Alice, Alice ne voit pas celui de Béa.</p>
-<p><?= $nbRecusBea === 1 ? '✅' : '❌' ?> Béa a reçu <?= $nbRecusBea ?> partage.</p>
+<p><?= htmlspecialchars($cree ? '✅' : '❌') ?> Alice a partagé son Instagram avec Béa.</p>
+<p><?= htmlspecialchars(!$doublon ? '✅' : '❌') ?> Le même partage une deuxième fois est ignoré.</p>
+<p><?= htmlspecialchars($beaVoitAlice && !$aliceVoitBea ? '✅' : '❌') ?> Béa voit l'Instagram d'Alice, Alice ne voit pas celui de Béa.</p>
+<p><?= htmlspecialchars($nbRecusBea === 1 ? '✅' : '❌') ?> Béa a reçu <?= htmlspecialchars($nbRecusBea) ?> partage.</p>
 <p><?= htmlspecialchars($refus) ?></p>
 <p>✅ PartageInsta et PartageInstaManager fonctionnent. Les données de test ont été supprimées.</p>

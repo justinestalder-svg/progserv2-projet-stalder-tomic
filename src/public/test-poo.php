@@ -25,5 +25,5 @@ $compteRelu = $compteManager->getCompteById($id);
 // Supprime le compte de test
 $compteManager->removeCompte($id);
 ?>
-<p>Compte créé avec l'id <?= $id ?>, relu : <?= htmlspecialchars($compteRelu->getPseudo()) ?> (<?= htmlspecialchars($compteRelu->getEmail()) ?>), puis supprimé.</p>
+<p>Compte créé avec l'id <?= htmlspecialchars($id) ?>, relu : <?= htmlspecialchars($compteRelu->getPseudo()) ?> (<?= htmlspecialchars($compteRelu->getEmail()) ?>), puis supprimé.</p>
 <p>✅ Database, autoloader, Compte et CompteManager fonctionnent.</p>

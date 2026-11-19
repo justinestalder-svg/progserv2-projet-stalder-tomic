@@ -166,23 +166,23 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['reglages_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['reglages_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
     <?php require __DIR__ . '/../includes/entete.php'; ?>
 
     <main>
-        <a href="index.php"><?= $textes['reglages_retour'] ?></a>
-        <h1><?= $textes['reglages_titre'] ?></h1>
+        <a href="index.php"><?= htmlspecialchars($textes['reglages_retour']) ?></a>
+        <h1><?= htmlspecialchars($textes['reglages_titre']) ?></h1>
 
         <?php if ($succes) { ?>
-            <p><?= $textes['reglages_succes'] ?></p>
+            <p><?= htmlspecialchars($textes['reglages_succes']) ?></p>
         <?php } ?>
 
         <?php if (isset($erreurs['general'])) { ?>
@@ -191,30 +191,30 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
 
         <!-- Menu de la page -->
         <nav>
-            <a href="#profil"><?= $textes['reglages_mon_profil'] ?></a>
-            <a href="#instagram"><?= $textes['reglages_instagram'] ?></a>
-            <a href="#compte"><?= $textes['reglages_compte'] ?></a>
-            <a href="#supprimer"><?= $textes['reglages_supprimer'] ?></a>
+            <a href="#profil"><?= htmlspecialchars($textes['reglages_mon_profil']) ?></a>
+            <a href="#instagram"><?= htmlspecialchars($textes['reglages_instagram']) ?></a>
+            <a href="#compte"><?= htmlspecialchars($textes['reglages_compte']) ?></a>
+            <a href="#supprimer"><?= htmlspecialchars($textes['reglages_supprimer']) ?></a>
         </nav>
 
         <form method="post" enctype="multipart/form-data">
             <!-- Mon profil -->
             <section id="profil">
-                <h2><?= $textes['reglages_mon_profil'] ?></h2>
+                <h2><?= htmlspecialchars($textes['reglages_mon_profil']) ?></h2>
 
                 <div>
                     <!-- htmlspecialchars aussi sur le chemin de la photo -->
-                    <img src="<?= htmlspecialchars($profil->getPhotoProfil()) ?>" alt="<?= $textes['reglages_photo'] ?>" width="100">
-                    <label for="photo"><?= $textes['reglages_changer_photo'] ?></label>
+                    <img src="<?= htmlspecialchars($profil->getPhotoProfil()) ?>" alt="<?= htmlspecialchars($textes['reglages_photo']) ?>" width="100">
+                    <label for="photo"><?= htmlspecialchars($textes['reglages_changer_photo']) ?></label>
                     <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png">
-                    <p><?= $textes['reglages_photo_aide'] ?></p>
+                    <p><?= htmlspecialchars($textes['reglages_photo_aide']) ?></p>
                     <?php if (isset($erreurs['photo'])) { ?>
                         <p><?= htmlspecialchars($erreurs['photo']) ?></p>
                     <?php } ?>
                 </div>
 
                 <div>
-                    <label for="pseudo"><?= $textes['inscription_pseudo'] ?></label>
+                    <label for="pseudo"><?= htmlspecialchars($textes['inscription_pseudo']) ?></label>
                     <input type="text" id="pseudo" name="pseudo" required minlength="3" maxlength="20"
                         value="<?= htmlspecialchars($pseudo) ?>">
                     <?php if (isset($erreurs['pseudo'])) { ?>
@@ -223,7 +223,7 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
                 </div>
 
                 <div>
-                    <label for="date_naissance"><?= $textes['creer_profil_date'] ?></label>
+                    <label for="date_naissance"><?= htmlspecialchars($textes['creer_profil_date']) ?></label>
                     <input type="date" id="date_naissance" name="date_naissance" required
                         value="<?= htmlspecialchars($dateNaissance) ?>">
                     <?php if (isset($erreurs['date_naissance'])) { ?>
@@ -232,18 +232,18 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
                 </div>
 
                 <fieldset>
-                    <legend><?= $textes['creer_profil_genre'] ?></legend>
+                    <legend><?= htmlspecialchars($textes['creer_profil_genre']) ?></legend>
                     <label>
                         <input type="radio" name="genre" value="femme" required <?php if ($genre === 'femme') { ?>checked<?php } ?>>
-                        <?= $textes['genre_femme'] ?>
+                        <?= htmlspecialchars($textes['genre_femme']) ?>
                     </label>
                     <label>
                         <input type="radio" name="genre" value="homme" <?php if ($genre === 'homme') { ?>checked<?php } ?>>
-                        <?= $textes['genre_homme'] ?>
+                        <?= htmlspecialchars($textes['genre_homme']) ?>
                     </label>
                     <label>
                         <input type="radio" name="genre" value="autre" <?php if ($genre === 'autre') { ?>checked<?php } ?>>
-                        <?= $textes['genre_autre'] ?>
+                        <?= htmlspecialchars($textes['genre_autre']) ?>
                     </label>
                     <?php if (isset($erreurs['genre'])) { ?>
                         <p><?= htmlspecialchars($erreurs['genre']) ?></p>
@@ -253,8 +253,8 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
 
             <!-- Instagram -->
             <section id="instagram">
-                <h2><?= $textes['reglages_instagram'] ?></h2>
-                <label for="instagram"><?= $textes['creer_profil_instagram'] ?></label>
+                <h2><?= htmlspecialchars($textes['reglages_instagram']) ?></h2>
+                <label for="instagram"><?= htmlspecialchars($textes['creer_profil_instagram']) ?></label>
                 @<input type="text" id="instagram" name="instagram" required minlength="2" maxlength="31"
                     value="<?= htmlspecialchars($instagram) ?>">
                 <?php if (isset($erreurs['instagram'])) { ?>
@@ -262,23 +262,23 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
                 <?php } ?>
             </section>
 
-            <button type="submit" name="enregistrer"><?= $textes['reglages_enregistrer'] ?></button>
+            <button type="submit" name="enregistrer"><?= htmlspecialchars($textes['reglages_enregistrer']) ?></button>
         </form>
 
         <!-- Partagé avec : un petit formulaire par personne (en dehors du grand formulaire) -->
         <section>
-            <h3><?= $textes['reglages_partage_avec'] ?></h3>
+            <h3><?= htmlspecialchars($textes['reglages_partage_avec']) ?></h3>
 
             <?php if (empty($partages)) { ?>
-                <p><?= $textes['reglages_aucun_partage'] ?></p>
+                <p><?= htmlspecialchars($textes['reglages_aucun_partage']) ?></p>
             <?php } else { ?>
                 <ul>
                     <?php foreach ($partages as $unPartage) { ?>
                         <li>
                             <?= htmlspecialchars($unPartage['pseudo']) ?>
                             <form method="post">
-                                <button type="submit" name="retirer_partage" value="<?= $unPartage['id_profil'] ?>">
-                                    <?= $textes['reglages_ne_plus_partager'] ?>
+                                <button type="submit" name="retirer_partage" value="<?= htmlspecialchars($unPartage['id_profil']) ?>">
+                                    <?= htmlspecialchars($textes['reglages_ne_plus_partager']) ?>
                                 </button>
                             </form>
                         </li>
@@ -289,25 +289,25 @@ foreach ($partageManager->getPartagesEnvoyes($profil->getId()) as $partage) {
 
         <!-- Compte et sécurité -->
         <section id="compte">
-            <h2><?= $textes['reglages_compte'] ?></h2>
-            <p><?= $textes['inscription_email'] ?> : <?= htmlspecialchars($compte->getEmail()) ?></p>
-            <p><?= $textes['reglages_email_bientot'] ?></p>
-            <a href="mot-de-passe.php"><?= $textes['reglages_modifier_mdp'] ?></a>
-            <a href="appareils.php"><?= $textes['reglages_appareils'] ?></a>
+            <h2><?= htmlspecialchars($textes['reglages_compte']) ?></h2>
+            <p><?= htmlspecialchars($textes['inscription_email']) ?> : <?= htmlspecialchars($compte->getEmail()) ?></p>
+            <p><?= htmlspecialchars($textes['reglages_email_bientot']) ?></p>
+            <a href="mot-de-passe.php"><?= htmlspecialchars($textes['reglages_modifier_mdp']) ?></a>
+            <a href="appareils.php"><?= htmlspecialchars($textes['reglages_appareils']) ?></a>
         </section>
 
         <!-- Supprimer mon compte -->
         <section id="supprimer">
-            <h2><?= $textes['reglages_supprimer'] ?></h2>
-            <p><?= $textes['reglages_supprimer_texte'] ?></p>
-            <a href="supprimer-compte.php"><?= $textes['reglages_supprimer'] ?></a>
+            <h2><?= htmlspecialchars($textes['reglages_supprimer']) ?></h2>
+            <p><?= htmlspecialchars($textes['reglages_supprimer_texte']) ?></p>
+            <a href="supprimer-compte.php"><?= htmlspecialchars($textes['reglages_supprimer']) ?></a>
         </section>
     </main>
 
     <?php if (!$cookiesAcceptes) { ?>
         <p>
-            <?= $textes['cookies_message'] ?>
-            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+            <?= htmlspecialchars($textes['cookies_message']) ?>
+            <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
         </p>
     <?php } ?>
 </body>

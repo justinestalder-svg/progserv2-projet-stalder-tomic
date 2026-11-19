@@ -60,7 +60,7 @@ $nbApres = count($appareilManager->getAppareilsByCompteId($idCompte));
 $appareilManager->removeAppareil($idMac);
 $compteManager->removeCompte($idCompte);
 ?>
-<p><?= $nbAvant === 2 ? '✅' : '❌' ?> Le compte est connecté sur <?= $nbAvant ?> appareils.</p>
-<p><?= $appareil !== null ? '✅' : '❌' ?> Appareil retrouvé grâce au jeton de session : <?= htmlspecialchars($appareil->getNomAppareil()) ?> (<?= htmlspecialchars($appareil->getNavigateur()) ?>).</p>
-<p><?= $nbApres === 1 ? '✅' : '❌' ?> Après « Déconnecter les autres appareils », il en reste <?= $nbApres ?>.</p>
+<p><?= htmlspecialchars($nbAvant === 2 ? '✅' : '❌') ?> Le compte est connecté sur <?= htmlspecialchars($nbAvant) ?> appareils.</p>
+<p><?= htmlspecialchars($appareil !== null ? '✅' : '❌') ?> Appareil retrouvé grâce au jeton de session : <?= htmlspecialchars($appareil->getNomAppareil()) ?> (<?= htmlspecialchars($appareil->getNavigateur()) ?>).</p>
+<p><?= htmlspecialchars($nbApres === 1 ? '✅' : '❌') ?> Après « Déconnecter les autres appareils », il en reste <?= htmlspecialchars($nbApres) ?>.</p>
 <p>✅ Appareil et AppareilManager fonctionnent. Les appareils et le compte de test ont été supprimés.</p>
