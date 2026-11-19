@@ -120,21 +120,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['creer_profil_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['creer_profil_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
     <p>
-        <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
+        <a href="?langue=fr"><?= htmlspecialchars($textes['francais']) ?></a> | <a href="?langue=en"><?= htmlspecialchars($textes['anglais']) ?></a>
     </p>
 
-    <h1><?= $textes['creer_profil_titre'] ?></h1>
-    <p><?= $textes['creer_profil_intro'] ?></p>
+    <h1><?= htmlspecialchars($textes['creer_profil_titre']) ?></h1>
+    <p><?= htmlspecialchars($textes['creer_profil_intro']) ?></p>
 
     <?php if (isset($erreurs['general'])) { ?>
         <p><?= htmlspecialchars($erreurs['general']) ?></p>
@@ -144,18 +144,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="post" enctype="multipart/form-data">
         <!-- 1. Genre -->
         <fieldset>
-            <legend><?= $textes['creer_profil_genre'] ?></legend>
+            <legend><?= htmlspecialchars($textes['creer_profil_genre']) ?></legend>
             <label>
                 <input type="radio" name="genre" value="femme" required <?php if ($genre === 'femme') { ?>checked<?php } ?>>
-                <?= $textes['genre_femme'] ?>
+                <?= htmlspecialchars($textes['genre_femme']) ?>
             </label>
             <label>
                 <input type="radio" name="genre" value="homme" <?php if ($genre === 'homme') { ?>checked<?php } ?>>
-                <?= $textes['genre_homme'] ?>
+                <?= htmlspecialchars($textes['genre_homme']) ?>
             </label>
             <label>
                 <input type="radio" name="genre" value="autre" <?php if ($genre === 'autre') { ?>checked<?php } ?>>
-                <?= $textes['genre_autre'] ?>
+                <?= htmlspecialchars($textes['genre_autre']) ?>
             </label>
             <?php if (isset($erreurs['genre'])) { ?>
                 <p><?= htmlspecialchars($erreurs['genre']) ?></p>
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 2. Date de naissance -->
         <div>
-            <label for="date_naissance"><?= $textes['creer_profil_date'] ?></label>
+            <label for="date_naissance"><?= htmlspecialchars($textes['creer_profil_date']) ?></label>
             <input type="date" id="date_naissance" name="date_naissance" required
                 value="<?= htmlspecialchars($dateNaissance) ?>">
             <?php if (isset($erreurs['date_naissance'])) { ?>
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 3. Photo -->
         <div>
-            <label for="photo"><?= $textes['creer_profil_photo'] ?></label>
+            <label for="photo"><?= htmlspecialchars($textes['creer_profil_photo']) ?></label>
             <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png" required>
             <?php if (isset($erreurs['photo'])) { ?>
                 <p><?= htmlspecialchars($erreurs['photo']) ?></p>
@@ -183,22 +183,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- 4. Instagram -->
         <div>
-            <label for="instagram"><?= $textes['creer_profil_instagram'] ?></label>
+            <label for="instagram"><?= htmlspecialchars($textes['creer_profil_instagram']) ?></label>
             @<input type="text" id="instagram" name="instagram" required minlength="2" maxlength="31"
                 value="<?= htmlspecialchars($instagram) ?>">
-            <p><?= $textes['creer_profil_instagram_aide'] ?></p>
+            <p><?= htmlspecialchars($textes['creer_profil_instagram_aide']) ?></p>
             <?php if (isset($erreurs['instagram'])) { ?>
                 <p><?= htmlspecialchars($erreurs['instagram']) ?></p>
             <?php } ?>
         </div>
 
-        <button type="submit"><?= $textes['creer_profil_bouton'] ?></button>
+        <button type="submit"><?= htmlspecialchars($textes['creer_profil_bouton']) ?></button>
     </form>
 
     <?php if (!$cookiesAcceptes) { ?>
         <p>
-            <?= $textes['cookies_message'] ?>
-            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+            <?= htmlspecialchars($textes['cookies_message']) ?>
+            <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
         </p>
     <?php } ?>
 </body>

@@ -77,21 +77,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
+?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['connexion_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['connexion_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
     <p>
-        <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
+        <a href="?langue=fr"><?= htmlspecialchars($textes['francais']) ?></a> | <a href="?langue=en"><?= htmlspecialchars($textes['anglais']) ?></a>
     </p>
 
-    <h1><?= $textes['connexion_titre'] ?></h1>
+    <h1><?= htmlspecialchars($textes['connexion_titre']) ?></h1>
 
     <?php if ($erreur !== null) { ?>
         <p><?= htmlspecialchars($erreur) ?></p>
@@ -99,32 +100,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="post">
         <div>
-            <label for="identifiant"><?= $textes['connexion_identifiant'] ?></label>
+            <label for="identifiant"><?= htmlspecialchars($textes['connexion_identifiant']) ?></label>
             <input type="text" id="identifiant" name="identifiant" placeholder="toi@mail.com"
                 required maxlength="255" autocomplete="username"
                 value="<?= htmlspecialchars($identifiant) ?>">
         </div>
 
         <div>
-            <label for="mot_de_passe"><?= $textes['connexion_mot_de_passe'] ?></label>
+            <label for="mot_de_passe"><?= htmlspecialchars($textes['connexion_mot_de_passe']) ?></label>
             <!-- On ne remet jamais le mot de passe dans le champ après une erreur -->
             <input type="password" id="mot_de_passe" name="mot_de_passe"
                 required autocomplete="current-password">
         </div>
 
-        <button type="submit"><?= $textes['connexion_bouton'] ?></button>
+        <button type="submit"><?= htmlspecialchars($textes['connexion_bouton']) ?></button>
     </form>
 
     <div>
-        <span><?= $textes['connexion_pas_de_compte'] ?></span>
-        <a href="inscription.php"><?= $textes['connexion_lien_inscription'] ?></a>
+        <span><?= htmlspecialchars($textes['connexion_pas_de_compte']) ?></span>
+        <a href="inscription.php"><?= htmlspecialchars($textes['connexion_lien_inscription']) ?></a>
     </div>
 </body>
 
 <?php if (!$cookiesAcceptes) { ?>
     <p>
-        <?= $textes['cookies_message'] ?>
-        <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+        <?= htmlspecialchars($textes['cookies_message']) ?>
+        <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
     </p>
 <?php } ?>
 

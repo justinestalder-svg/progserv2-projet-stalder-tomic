@@ -11,14 +11,25 @@ $profilManager = new ProfilManager();
 
 // 1. Un profil appartient à un compte : on crée d'abord un compte de test
 $idCompte = $compteManager->addCompte(new Compte(
-    null, 'test_profil', 'test.profil@example.com',
-    password_hash('motdepasse123', PASSWORD_DEFAULT), 'fr', false,
-    new DateTime(), new DateTime()
+    null,
+    'test_profil',
+    'test.profil@example.com',
+    password_hash('motdepasse123', PASSWORD_DEFAULT),
+    'fr',
+    false,
+    new DateTime(),
+    new DateTime()
 ));
 
 // 2. On crée le profil de ce compte (le @ du nom Instagram est retiré automatiquement)
 $idProfil = $profilManager->addProfil(new Profil(
-    null, 'femme', new DateTime('2003-05-14'), 'uploads/test.jpg', '@test.soundmatch', 'Yverdon', $idCompte
+    null,
+    'femme',
+    new DateTime('2003-05-14'),
+    'uploads/test.jpg',
+    '@test.soundmatch',
+    'Yverdon',
+    $idCompte
 ));
 
 // 3. On relit le profil à partir du compte, puis on le modifie
@@ -39,6 +50,6 @@ try {
 $profilManager->removeProfil($idProfil);
 $compteManager->removeCompte($idCompte);
 ?>
-<p>Profil <?= $idProfil ?> créé pour le compte <?= $idCompte ?> : <?= htmlspecialchars($profilRelu->getGenre()) ?>, <?= $profilRelu->getAge() ?> ans, @<?= htmlspecialchars($profilRelu->getNomInstagram()) ?>, ville modifiée en <?= htmlspecialchars($profilRelu->getVille()) ?>.</p>
+<p>Profil <?= htmlspecialchars($idProfil) ?> créé pour le compte <?= htmlspecialchars($idCompte) ?> : <?= htmlspecialchars($profilRelu->getGenre()) ?>, <?= htmlspecialchars($profilRelu->getAge()) ?> ans, @<?= htmlspecialchars($profilRelu->getNomInstagram()) ?>, ville modifiée en <?= htmlspecialchars($profilRelu->getVille()) ?>.</p>
 <p><?= htmlspecialchars($refus) ?></p>
 <p>✅ Profil et ProfilManager fonctionnent. Le profil et le compte de test ont été supprimés.</p>

@@ -181,12 +181,12 @@ if (!isset($_GET['fin'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['session_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['session_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
@@ -195,37 +195,37 @@ if (!isset($_GET['fin'])) {
     <main>
         <?php if (isset($_GET['fin'])) { ?>
             <!-- Écran de fin -->
-            <h1><?= $textes['session_terminee'] ?></h1>
-            <p><?= $textes['session_resultat_debut'] ?> <?= $nbAimes ?> <?= $textes['session_resultat_fin'] ?> <?= $nbExtraitsSession ?>.</p>
-            <a href="session.php"><?= $textes['session_nouvelle'] ?></a>
-            <a href="matchs.php"><?= $textes['session_voir_matchs'] ?></a>
+            <h1><?= htmlspecialchars($textes['session_terminee']) ?></h1>
+            <p><?= htmlspecialchars($textes['session_resultat_debut']) ?><?= htmlspecialchars($nbAimes) ?><?= htmlspecialchars($textes['session_resultat_fin']) ?><?= htmlspecialchars($nbExtraitsSession) ?>.</p>
+            <a href="session.php"><?= htmlspecialchars($textes['session_nouvelle']) ?></a>
+            <a href="matchs.php"><?= htmlspecialchars($textes['session_voir_matchs']) ?></a>
 
         <?php } else if ($serie === null) { ?>
             <!-- Pas encore de musiques dans la base -->
-            <h1><?= $textes['session_titre'] ?></h1>
-            <p><?= $textes['session_aucune_serie'] ?></p>
+            <h1><?= htmlspecialchars($textes['session_titre']) ?></h1>
+            <p><?= htmlspecialchars($textes['session_aucune_serie']) ?></p>
 
         <?php } else if (isset($_GET['quitter'])) { ?>
             <!-- Fenêtre « Quitter la session » -->
-            <h1><?= $textes['session_quitter_titre'] ?></h1>
-            <p><?= $textes['session_quitter_texte'] ?></p>
+            <h1><?= htmlspecialchars($textes['session_quitter_titre']) ?></h1>
+            <p><?= htmlspecialchars($textes['session_quitter_texte']) ?></p>
             <form method="post">
-                <button type="submit" name="action" value="quitter"><?= $textes['session_quitter_bouton'] ?></button>
+                <button type="submit" name="action" value="quitter"><?= htmlspecialchars($textes['session_quitter_bouton']) ?></button>
             </form>
-            <a href="session.php"><?= $textes['session_continuer'] ?></a>
+            <a href="session.php"><?= htmlspecialchars($textes['session_continuer']) ?></a>
 
         <?php } else { ?>
             <!-- La session en cours -->
-            <h1><?= $textes['session_titre'] ?></h1>
-            <a href="session.php?quitter=1">✕ <?= $textes['session_quitter_lien'] ?></a>
+            <h1><?= htmlspecialchars($textes['session_titre']) ?></h1>
+            <a href="session.php?quitter=1">✕<?= htmlspecialchars($textes['session_quitter_lien']) ?></a>
 
-            <p><?= $textes['session_extrait'] ?> <?= $position + 1 ?> / <?= count($extraits) ?></p>
-            <p>✓ <?= $nbAimes ?> <?= $textes['session_aimes'] ?> · ✕ <?= $nbIgnores ?> <?= $textes['session_ignores'] ?></p>
+            <p><?= htmlspecialchars($textes['session_extrait']) ?><?= htmlspecialchars($position + 1) ?> /<?= htmlspecialchars(count($extraits)) ?></p>
+            <p>✓<?= htmlspecialchars($nbAimes) ?><?= htmlspecialchars($textes['session_aimes']) ?> · ✕<?= htmlspecialchars($nbIgnores) ?><?= htmlspecialchars($textes['session_ignores']) ?></p>
 
             <!-- Barre de progression : un symbole par extrait -->
             <p>
                 <?php foreach ($barre as $symbole) { ?>
-                    <?= $symbole ?>
+                    <?= htmlspecialchars($symbole) ?>
                 <?php } ?>
             </p>
 
@@ -240,20 +240,20 @@ if (!isset($_GET['fin'])) {
 
                 <form method="post">
                     <button type="submit" name="action" value="favori">
-                        <?php if ($estFavori) { ?>★ <?= $textes['session_retirer_favori'] ?><?php } else { ?>☆ <?= $textes['session_ajouter_favori'] ?><?php } ?>
+                        <?php if ($estFavori) { ?>★<?= htmlspecialchars($textes['session_retirer_favori']) ?><?php } else { ?>☆<?= htmlspecialchars($textes['session_ajouter_favori']) ?><?php } ?>
                     </button>
                 </form>
             </section>
 
             <!-- J'ignore / J'aime -->
             <form method="post">
-                <button type="submit" name="action" value="ignore">✕ <?= $textes['session_ignore'] ?></button>
-                <button type="submit" name="action" value="aime">✓ <?= $textes['session_aime'] ?></button>
+                <button type="submit" name="action" value="ignore">✕<?= htmlspecialchars($textes['session_ignore']) ?></button>
+                <button type="submit" name="action" value="aime">✓<?= htmlspecialchars($textes['session_aime']) ?></button>
             </form>
 
             <?php if ($position > 0) { ?>
                 <form method="post">
-                    <button type="submit" name="action" value="precedent"><?= $textes['session_precedent'] ?></button>
+                    <button type="submit" name="action" value="precedent"><?= htmlspecialchars($textes['session_precedent']) ?></button>
                 </form>
             <?php } ?>
         <?php } ?>
@@ -261,8 +261,8 @@ if (!isset($_GET['fin'])) {
 
     <?php if (!$cookiesAcceptes) { ?>
         <p>
-            <?= $textes['cookies_message'] ?>
-            <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+            <?= htmlspecialchars($textes['cookies_message']) ?>
+            <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
         </p>
     <?php } ?>
 </body>

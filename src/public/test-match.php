@@ -82,11 +82,11 @@ $compteManager->removeCompte($idCompteA);
 $compteManager->removeCompte($idCompteB);
 $pdo->exec("DELETE FROM genre_musical WHERE id_genre IN ($idRap, $idRock)");
 ?>
-<p><?= $trouveAB && $trouveBA ? '✅' : '❌' ?> Le match est retrouvé dans les deux sens (Alice/Béa et Béa/Alice).</p>
-<p><?= $doublon === null ? '✅' : '❌' ?> Un deuxième match pour la même paire est refusé.</p>
-<p><?= $scoresOk ? '✅' : '❌' ?> Les scores par genre sont bien enregistrés (rap 90, rock 40).</p>
-<p><?= $meilleurOk ? '✅' : '❌' ?> Le meilleur genre du duo est le rap (pour l'idée de date).</p>
-<p><?= $rockModifie ? '✅' : '❌' ?> Le score du rock a bien été modifié à 70.</p>
-<p><?= count($matchsBea) === 1 ? '✅' : '❌' ?> Béa a <?= count($matchsBea) ?> match, avec le profil <?= $matchsBea[0]->getIdAutreProfil($idBea) === $idAlice ? "d'Alice" : '?' ?>.</p>
+<p><?= htmlspecialchars($trouveAB && $trouveBA ? '✅' : '❌') ?> Le match est retrouvé dans les deux sens (Alice/Béa et Béa/Alice).</p>
+<p><?= htmlspecialchars($doublon === null ? '✅' : '❌') ?> Un deuxième match pour la même paire est refusé.</p>
+<p><?= htmlspecialchars($scoresOk ? '✅' : '❌') ?> Les scores par genre sont bien enregistrés (rap 90, rock 40).</p>
+<p><?= htmlspecialchars($meilleurOk ? '✅' : '❌') ?> Le meilleur genre du duo est le rap (pour l'idée de date).</p>
+<p><?= htmlspecialchars($rockModifie ? '✅' : '❌') ?> Le score du rock a bien été modifié à 70.</p>
+<p><?= htmlspecialchars(count($matchsBea) === 1 ? '✅' : '❌') ?> Béa a <?= htmlspecialchars(count($matchsBea)) ?> match, avec le profil <?= htmlspecialchars($matchsBea[0]->getIdAutreProfil($idBea) === $idAlice ? "d'Alice" : '?') ?>.</p>
 <p><?= htmlspecialchars($refus) ?></p>
 <p>✅ MatchDuo et MatchDuoManager fonctionnent. Les données de test ont été supprimées.</p>

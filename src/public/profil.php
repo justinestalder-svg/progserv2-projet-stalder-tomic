@@ -18,29 +18,29 @@ if (!isset($_SESSION['id_compte'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $langue ?>">
+<html lang="<?= htmlspecialchars($langue) ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $textes['profil_titre'] ?> | SoundMatch</title>
+    <title><?= htmlspecialchars($textes['profil_titre']) ?> | SoundMatch</title>
 </head>
 
 <body>
     <p>
-        <a href="?langue=fr"><?= $textes['francais'] ?></a> | <a href="?langue=en"><?= $textes['anglais'] ?></a>
+        <a href="?langue=fr"><?= htmlspecialchars($textes['francais']) ?></a> | <a href="?langue=en"><?= htmlspecialchars($textes['anglais']) ?></a>
     </p>
 
-    <h1><?= $textes['profil_titre'] ?></h1>
+    <h1><?= htmlspecialchars($textes['profil_titre']) ?></h1>
 
-    <p><?= $textes['profil_bonjour'] ?> <?= htmlspecialchars($_SESSION['pseudo']) ?> 👋</p>
+    <p><?= htmlspecialchars($textes['profil_bonjour']) ?> <?= htmlspecialchars($_SESSION['pseudo']) ?> 👋</p>
 
-    <a href="deconnexion.php"><?= $textes['profil_deconnexion'] ?></a>
+    <a href="deconnexion.php"><?= htmlspecialchars($textes['profil_deconnexion']) ?></a>
 </body>
 <?php if (!$cookiesAcceptes) { ?>
     <p>
-        <?= $textes['cookies_message'] ?>
-        <a href="?cookies=ok"><?= $textes['cookies_ok'] ?></a>
+        <?= htmlspecialchars($textes['cookies_message']) ?>
+        <a href="?cookies=ok"><?= htmlspecialchars($textes['cookies_ok']) ?></a>
     </p>
 <?php } ?>
 
