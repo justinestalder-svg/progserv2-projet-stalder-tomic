@@ -52,9 +52,10 @@ class CalculMatch {
 
         $stmt = $this->database->getPdo()->prepare($sql);
         $stmt->execute();
+        $lignes = $stmt->fetchAll();
 
         $ids = [];
-        foreach ($stmt->fetchAll() as $ligne) {
+        foreach ($lignes as $ligne) {
             $ids[] = (int) $ligne['id_profil'];
         }
 
@@ -109,6 +110,7 @@ class CalculMatch {
             $autresTaux = $this->calculerTaux($autresReponses);
 
             // 1. Score de chaque genre : 100 - (écart entre les deux taux x 100)
+            $scoresGenre = [];
             foreach ($mesTaux as $idGenre => $taux) {
                 if (isset($autresTaux[$idGenre])) {
                     $ecart = abs($taux - $autresTaux[$idGenre]);

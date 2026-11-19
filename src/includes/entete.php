@@ -3,6 +3,8 @@
 // On l'inclut dans chaque page privée avec :
 // require __DIR__ . '/../includes/entete.php';
 // Il utilise $textes, qui vient de utils/langue.php.
+
+/** @var array $textes */
 ?>
 <header>
     <nav>
